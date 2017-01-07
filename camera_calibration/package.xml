@@ -2,12 +2,10 @@
   <name>camera_calibration</name>
   <version>1.12.19</version>
   <description>
-     camera_calibration allows easy calibration of monocular or stereo
-     cameras using a checkerboard calibration target.
+     camera_calibration allows easy calibration of monocular or stereo from ROS Camera Calibration
+     For the calibation of Davinci robot
   </description>
-  <author>James Bowman</author>
-  <author>Patrick Mihelich</author>
-  <maintainer email="vincent.rabaud@gmail.com">Vincent Rabaud</maintainer>
+  <maintainer email="rxh349@case.edu">Ran Hao</maintainer>
 
   <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
 
@@ -19,6 +17,9 @@
   <run_depend>rospy</run_depend>
   <run_depend>std_srvs</run_depend>
   <run_depend>sensor_msgs</run_depend>
+
+  <build_depend>std_msgs</build_depend>
+  <run_depend>std_msgs</run_depend>
 
   <build_depend>message_generation</build_depend>
   <run_depend>message_runtime</run_depend>

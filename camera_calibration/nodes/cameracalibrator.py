@@ -38,6 +38,9 @@ import sensor_msgs.srv
 import message_filters
 from message_filters import ApproximateTimeSynchronizer
 
+import corners.msg
+import points.msg
+
 import os
 from collections import deque
 import threading
@@ -135,6 +138,11 @@ class CalibrationNode:
 
         self.c = None
 
+        # add publisher when received the corner information TODO:
+        corners_pub = rospy.Publisher('corners_coordinates', corners, queue_size=10)
+
+        r = rospy.Rate(50) #10hz needed for publisher TODO DONE
+
         mth = ConsumerThread(self.q_mono, self.handle_monocular)
         mth.setDaemon(True)
         mth.start()
@@ -142,7 +150,7 @@ class CalibrationNode:
         sth = ConsumerThread(self.q_stereo, self.handle_stereo)
         sth.setDaemon(True)
         sth.start()
-        
+
     def redraw_stereo(self, *args):
         pass
     def redraw_monocular(self, *args):
@@ -180,21 +188,28 @@ class CalibrationNode:
         drawable = self.c.handle_msg(msg)
         self.displaywidth = drawable.lscrib.shape[1] + drawable.rscrib.shape[1]
         self.redraw_stereo(drawable)
-        
-        # added lines TODO:
+
+        # added lines TODO:        
+        corner_msgs = corners()   #get msg type from corners
+
         if drawable.lcorner is not None:
-            self.lcorner = drawable.lcorner
+            corner_msgs.left_corners = drawable.lcorner
         else:
             print()
             print("No LEFT corner coordinates")
             print()
 
         if drawable.rcorner is not None:
-            self.rcorner = drawable.rcorner
+            corner_msgs.right_corners = drawable.rcorner
         else:
             print()
             print("No RIGHT corner coordinates")
             print()
+
+        # Publishes left and right corner coordinates, change them into vectors; TODO:
+        while not rospy.is_shutdown():
+            corners_pub.publish(corner_msgs)
+            r.sleep()
 
     def check_set_camera_info(self, response):
         if response.success:
