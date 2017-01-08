@@ -139,9 +139,7 @@ class CalibrationNode:
         self.c = None
 
         # add publisher when received the corner information TODO:
-        corners_pub = rospy.Publisher('corners_coordinates', corners, queue_size=10)
-
-        r = rospy.Rate(50) #10hz needed for publisher TODO DONE
+        self.corners_pub = rospy.Publisher('corners_coordinates', corners)
 
         mth = ConsumerThread(self.q_mono, self.handle_monocular)
         mth.setDaemon(True)
@@ -192,6 +190,8 @@ class CalibrationNode:
         # added lines TODO:        
         corner_msgs = corners()   #get msg type from corners
 
+        r = rospy.Rate(50) #10hz needed for publisher TODO DONE
+
         if drawable.lcorner is not None:
             corner_msgs.left_corners = drawable.lcorner
         else:
@@ -208,7 +208,7 @@ class CalibrationNode:
 
         # Publishes left and right corner coordinates, change them into vectors; TODO:
         while not rospy.is_shutdown():
-            corners_pub.publish(corner_msgs)
+            self.corners_pub.publish(corner_msgs)
             r.sleep()
 
     def check_set_camera_info(self, response):
