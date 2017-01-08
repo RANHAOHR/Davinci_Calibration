@@ -139,7 +139,8 @@ class CalibrationNode:
         self.c = None
 
         # add publisher when received the corner information TODO:
-        self.corners_pub = rospy.Publisher('corners_coordinates', corners)
+		self.corners_pub = rospy.Publisher('corners_coordinates', corners)
+        # self.ros_rate = rospy.Rate(50) # for publisher, but the ConsumerThread has one, ignore? TODO:
 
         mth = ConsumerThread(self.q_mono, self.handle_monocular)
         mth.setDaemon(True)
@@ -188,28 +189,27 @@ class CalibrationNode:
         self.redraw_stereo(drawable)
 
         # added lines TODO:        
-        corner_msgs = corners()   #get msg type from corners
+		corner_msgs = corners()   #get msg type from corners
 
-        r = rospy.Rate(50) #10hz needed for publisher TODO DONE
+		if drawable.lcorner is not None:
+			corner_msgs.left_corners = drawable.lcorner
+		else:
+		print()
+		print("No LEFT corner coordinates")
+		print()
 
-        if drawable.lcorner is not None:
-            corner_msgs.left_corners = drawable.lcorner
-        else:
-            print()
-            print("No LEFT corner coordinates")
-            print()
+		if drawable.rcorner is not None:
+			corner_msgs.right_corners = drawable.rcorner
+		else:
+		print()
+		print("No RIGHT corner coordinates")
+		print()
 
-        if drawable.rcorner is not None:
-            corner_msgs.right_corners = drawable.rcorner
-        else:
-            print()
-            print("No RIGHT corner coordinates")
-            print()
+		# Publishes left and right corner coordinates, change them into vectors; TODO:
+		# while not rospy.is_shutdown():
 
-        # Publishes left and right corner coordinates, change them into vectors; TODO:
-        while not rospy.is_shutdown():
-            self.corners_pub.publish(corner_msgs)
-            r.sleep()
+		self.corners_pub.publish(corner_msgs)
+            # self.ros_rate.sleep()
 
     def check_set_camera_info(self, response):
         if response.success:
