@@ -191,15 +191,18 @@ class CalibrationNode:
         # added lines TODO:   
         corner_msgs = corners()   #get msg type from corners
 
-        if drawable.lcorner is not None:
-            corner_msgs.left_corners = drawable.lcorner
+        leftcorner_msg = convert_point2f_to_tuple(drawable.lcorner)  # want this msg to be tuple instead of cv::point2f
+        rightcorner_msg = convert_point2f_to_tuple(drawable.rcorner)
+
+        if leftcorner_msg is not None:
+            corner_msgs.left_corners = leftcorner_msg
         else:
             print()
             print("No LEFT corner coordinates")
             print()
 
-        if drawable.rcorner is not None:
-            corner_msgs.right_corners = drawable.rcorner
+        if rightcorner_msg is not None:
+            corner_msgs.right_corners = rightcorner_msg
         else:
             print()
             print("No RIGHT corner coordinates")
@@ -207,9 +210,15 @@ class CalibrationNode:
 
 		# Publishes left and right corner coordinates, change them into vectors; TODO:
         # while not rospy.is_shutdown():
-        self.corners_pub.publish(corner_msgs)
+        self.corners_pub.publish(corner_msgs)   # self.ros_rate.sleep()
 
-            # self.ros_rate.sleep()
+    def convert_point2f_to_tuple(input_corners):  # change cv::Point2f to tuple 
+        corner_Xs = input_corners[:,:,0]
+        corner_Ys = input_corners[:,:,1]
+        new_corner = zip(corner_Xs, corner_Ys)
+
+        corner_tuple = tuple(new_corner)
+        return corner_tuple
 
     def check_set_camera_info(self, response):
         if response.success:

@@ -5,14 +5,14 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
- message_generation
+  message_generation
 )
 
 add_message_files(
   FILES
   points.msg
-  left_corners.msg
-  right_corners.msg
+  corners.msg
+  cvpoints.msg
 )
 
 catkin_python_setup()

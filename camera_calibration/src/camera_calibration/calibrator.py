@@ -1000,7 +1000,7 @@ class StereoCalibrator(Calibrator):
             msg = self.as_message()
         cam.fromCameraInfo(*msg)
         disparities = lcorners[:,:,0] - rcorners[:,:,0]
-        pt3d = [cam.projectPixelTo3d((lcorners[i,0,0], lcorners[i,0,1]), disparities[i,0]) for i in range(lcorners.shape[0]) ]
+        pt3d = [cam.projectPixelTo3d((lcorners[i,0,0], lcorners[i,0,1]), disparities[i,0]) for i in range(lcorners.shape[0]) ]  ##3dpoints? TODO:
         def l2(p0, p1):
             return math.sqrt(sum([(c0 - c1) ** 2 for (c0, c1) in zip(p0, p1)]))
 
