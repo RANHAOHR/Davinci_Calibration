@@ -207,8 +207,6 @@ class CalibrationNode:
             for x in range(left_size):
                 points_msgs = leftcorner_msg(x)
                 corner_msgs.left_corners += (points_msgs,)
-            
-            corner_msgs.left_corners = leftcorner_msg
         else:
             print()
             print("No LEFT corner coordinates")
@@ -220,8 +218,6 @@ class CalibrationNode:
             for x in range(right_size):
                 points_msgs = rightcorner_msg(x)
                 corner_msgs.right_corners += (points_msgs,)
-                       
-            corner_msgs.right_corners = rightcorner_msg
         else:
             print()
             print("No RIGHT corner coordinates")
