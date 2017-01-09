@@ -199,9 +199,15 @@ class CalibrationNode:
 
         # added lines TODO:   
         corner_msgs = corners()   #get msg type from corners
+        points_msgs = points()
 
         if drawable.lcorner is not None:
             leftcorner_msg = self.convert_point2f_to_tuple(drawable.lcorner)  # want this msg to be tuple instead of cv::point2f
+            left_size = len(leftcorner_msg)
+            for x in range(left_size):
+                points_msgs = leftcorner_msg(x)
+                corner_msgs.left_corners += (points_msgs,)
+            
             corner_msgs.left_corners = leftcorner_msg
         else:
             print()
@@ -210,6 +216,11 @@ class CalibrationNode:
 
         if drawable.rcorner is not None:
             rightcorner_msg = self.convert_point2f_to_tuple(drawable.rcorner)
+            right_size = len(rightcorner_msg)
+            for x in range(right_size):
+                points_msgs = rightcorner_msg(x)
+                corner_msgs.right_corners += (points_msgs,)
+                       
             corner_msgs.right_corners = rightcorner_msg
         else:
             print()
@@ -218,8 +229,7 @@ class CalibrationNode:
 
 		# Publishes left and right corner coordinates, change them into vectors; TODO:
         # print(type(corner_msgs.))
-        point = (1,2)
-        self.test_pub.publish(point)
+        self.test_pub.publish(corner_msgs)
         rospy.sleep(0.1)
         # print(corner_msgs)
         
