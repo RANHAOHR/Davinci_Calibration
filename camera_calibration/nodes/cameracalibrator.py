@@ -140,7 +140,7 @@ class CalibrationNode:
 
         # add publisher when received the corner information TODO:
         self.corners_pub = rospy.Publisher('corners_coordinates', corners)
-        # self.ros_rate = rospy.Rate(50) # for publisher, but the ConsumerThread has one, ignore? TODO:
+        self.ros_rate = rospy.Rate(50) # for publisher, but the ConsumerThread has one, ignore? TODO:
 
         mth = ConsumerThread(self.q_mono, self.handle_monocular)
         mth.setDaemon(True)
@@ -210,7 +210,8 @@ class CalibrationNode:
 
 		# Publishes left and right corner coordinates, change them into vectors; TODO:
         # while not rospy.is_shutdown():
-        self.corners_pub.publish(corner_msgs)   # self.ros_rate.sleep()
+        self.corners_pub.publish(corner_msgs)
+        self.ros_rate.sleep()
 
     def convert_point2f_to_tuple(input_corners):  # change cv::Point2f to tuple 
         corner_Xs = input_corners[:,:,0]
