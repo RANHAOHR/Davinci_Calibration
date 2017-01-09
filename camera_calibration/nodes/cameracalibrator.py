@@ -38,9 +38,6 @@ import sensor_msgs.srv
 import message_filters
 from message_filters import ApproximateTimeSynchronizer
 
-import corners.msg
-import points.msg
-
 import os
 from collections import deque
 import threading
@@ -50,6 +47,8 @@ import time
 import cv2
 import numpy
 
+from camera_calibration.msg import corners
+from camera_calibration.msg import points
 from camera_calibration.calibrator import MonoCalibrator, StereoCalibrator, ChessboardInfo, Patterns
 from std_msgs.msg import String
 from std_srvs.srv import Empty
@@ -139,14 +138,16 @@ class CalibrationNode:
         self.c = None
 
         # add publisher when received the corner information TODO:
-        self.corners_pub = rospy.Publisher('corners_coordinates', corners)
-        self.ros_rate = rospy.Rate(50) # for publisher, but the ConsumerThread has one, ignore? TODO:
+        self.corners_pub = rospy.Publisher('corners_coordinates', corners, queue_size = 1)
+        self.test_pub = rospy.Publisher('corners_test', points, queue_size = 1)
+
+        # self.ros_rate = rospy.Rate(10) # for publisher, but the ConsumerThread has one, ignore? TODO:
 
         mth = ConsumerThread(self.q_mono, self.handle_monocular)
         mth.setDaemon(True)
         mth.start()
 
-        sth = ConsumerThread(self.q_stereo, self.handle_stereo)
+        sth = ConsumerThread(self.q_stereo, self.handle_stereo)  
         sth.setDaemon(True)
         sth.start()
 
@@ -160,6 +161,14 @@ class CalibrationNode:
 
     def queue_stereo(self, lmsg, rmsg):
         self.q_stereo.append((lmsg, rmsg))
+
+    def convert_point2f_to_tuple(self, input_corners):  # change cv::Point2f to tuple 
+        corner_Xs = input_corners[:,:,0]
+        corner_Ys = input_corners[:,:,1]
+        new_corner = zip(corner_Xs, corner_Ys)
+
+        corner_tuple = tuple(new_corner)
+        return corner_tuple
 
     def handle_monocular(self, msg):
         if self.c == None:
@@ -191,17 +200,16 @@ class CalibrationNode:
         # added lines TODO:   
         corner_msgs = corners()   #get msg type from corners
 
-        leftcorner_msg = convert_point2f_to_tuple(drawable.lcorner)  # want this msg to be tuple instead of cv::point2f
-        rightcorner_msg = convert_point2f_to_tuple(drawable.rcorner)
-
-        if leftcorner_msg is not None:
+        if drawable.lcorner is not None:
+            leftcorner_msg = self.convert_point2f_to_tuple(drawable.lcorner)  # want this msg to be tuple instead of cv::point2f
             corner_msgs.left_corners = leftcorner_msg
         else:
             print()
             print("No LEFT corner coordinates")
             print()
 
-        if rightcorner_msg is not None:
+        if drawable.rcorner is not None:
+            rightcorner_msg = self.convert_point2f_to_tuple(drawable.rcorner)
             corner_msgs.right_corners = rightcorner_msg
         else:
             print()
@@ -209,17 +217,13 @@ class CalibrationNode:
             print()
 
 		# Publishes left and right corner coordinates, change them into vectors; TODO:
-        # while not rospy.is_shutdown():
-        self.corners_pub.publish(corner_msgs)
-        self.ros_rate.sleep()
-
-    def convert_point2f_to_tuple(input_corners):  # change cv::Point2f to tuple 
-        corner_Xs = input_corners[:,:,0]
-        corner_Ys = input_corners[:,:,1]
-        new_corner = zip(corner_Xs, corner_Ys)
-
-        corner_tuple = tuple(new_corner)
-        return corner_tuple
+        # print(type(corner_msgs.))
+        point = (1,2)
+        self.test_pub.publish(point)
+        rospy.sleep(0.1)
+        # print(corner_msgs)
+        
+      
 
     def check_set_camera_info(self, response):
         if response.success:

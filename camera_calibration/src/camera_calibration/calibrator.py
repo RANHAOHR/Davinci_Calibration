@@ -532,6 +532,8 @@ class StereoDrawable(ImageDrawable):
         self.rscrib = None
         self.epierror = -1
         self.dim = -1
+        self.lcorner = None
+        self.rcorner = None
 
 
 class MonoCalibrator(Calibrator):
