@@ -139,7 +139,7 @@ class CalibrationNode:
 
         # add publisher when received the corner information TODO:
         self.corners_pub = rospy.Publisher('corners_coordinates', corners, queue_size = 1)
-        self.test_pub = rospy.Publisher('corners_test', points, queue_size = 1)
+        # self.test_pub = rospy.Publisher('corners_test', points, queue_size = 1)
 
         # self.ros_rate = rospy.Rate(10) # for publisher, but the ConsumerThread has one, ignore? TODO:
 
@@ -225,7 +225,7 @@ class CalibrationNode:
 
 		# Publishes left and right corner coordinates, change them into vectors; TODO:
         # print(type(corner_msgs.))
-        self.test_pub.publish(corner_msgs)
+        self.corners_pub.publish(corner_msgs)
         rospy.sleep(0.1)
         # print(corner_msgs)
         
