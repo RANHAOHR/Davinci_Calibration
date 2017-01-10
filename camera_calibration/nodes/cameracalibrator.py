@@ -54,8 +54,7 @@ from std_msgs.msg import String
 from std_srvs.srv import Empty
 from std_msgs.msg import Float32MultiArray
 from std_msgs.msg import MultiArrayDimension
-
-
+from std_msgs.msg import Int32
 
 class DisplayThread(threading.Thread):
     """
@@ -146,7 +145,7 @@ class CalibrationNode:
         self.right_pub = rospy.Publisher('/right_corners', Float32MultiArray, queue_size = 100)
 
         # self.corner_pub = rospy.Publisher('/_corners_coord', corners, queue_size = 100)
-        # self.ros_rate = rospy.Rate(10) # for publisher, but the ConsumerThread has one, ignore? TODO:
+        self.corner_size_pub = rospy.Publisher('/get_corner_size', Int32, queue_size = 100)
 
         mth = ConsumerThread(self.q_mono, self.handle_monocular)
         mth.setDaemon(True)
@@ -208,7 +207,8 @@ class CalibrationNode:
         # right_temp = points()   #get msg type from corners
         # corner_msgs = corners()
 
-        corner_size = 15
+        corner_size = len(drawable.lcorner)
+        self.corner_size_pub.publish(corner_size)
 # The mat is giving the ready-to-publish corner coordinates, push everything in a mat TODO:
         left_mat = Float32MultiArray()
         left_mat.layout.dim.append(MultiArrayDimension())

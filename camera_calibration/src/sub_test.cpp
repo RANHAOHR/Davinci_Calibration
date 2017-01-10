@@ -12,11 +12,12 @@
 #include "ros/ros.h"
 #include <ros/ros.h>
 #include <std_msgs/Float32MultiArray.h>
+#include <std_msgs/Int32.h>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include "opencv/cv.hpp"
 
-int corner_size = 15;
+int corner_size;
 
 void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 
@@ -49,19 +50,27 @@ void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr& rightcornerData)
 		ROS_INFO_STREAM("RIGHT Corner " << i << " has x: " << right_coords[i].x << " y: " << right_coords[i].y);
 
 	}
-	ROS_INFO_STREAM("size of right corners: " << right_coords.size());
 	ROS_INFO("----------------------");
 
 }
 
+void cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSizeData){
+
+	int corner_size = cornerSizeData->data;
+
+	ROS_INFO_STREAM("Size of corners: " << corner_size);
+	ROS_INFO("----------------------");
+
+}
 
 int main(int argc, char **argv) {
 
-    ros::init(argc, argv, "subscriber_test"); //name this node
+    ros::init(argc, argv, "subscriber_test");
     ros::NodeHandle nh; 
 
     ros::Subscriber leftcorner_subscriber = nh.subscribe("/left_corners", 1, leftcornerCB);
     ros::Subscriber rightcorner_subscriber = nh.subscribe("/right_corners", 1, rightcornerCB);
+    ros::Subscriber corner_size_subscriber = nh.subscribe("/get_corner_size", 1, cornerSizeCB);
 
 
     ros::spin();
