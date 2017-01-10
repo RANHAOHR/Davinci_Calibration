@@ -8,6 +8,9 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
 )
 
+find_package(OpenCV REQUIRED)
+include_directories(SYSTEM ${OpenCV_INCLUDE_DIRS})
+
 add_message_files(
   FILES
   points.msg
@@ -46,3 +49,11 @@ catkin_install_python(PROGRAMS nodes/cameracalibrator.py
   scripts/tarfile_calibration.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
+
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+)
+
+add_executable(sub_test src/sub_test.cpp)
+target_link_libraries(sub_test ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+

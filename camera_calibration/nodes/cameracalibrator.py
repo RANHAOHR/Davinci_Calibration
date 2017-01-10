@@ -52,6 +52,10 @@ from camera_calibration.msg import points
 from camera_calibration.calibrator import MonoCalibrator, StereoCalibrator, ChessboardInfo, Patterns
 from std_msgs.msg import String
 from std_srvs.srv import Empty
+from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import MultiArrayDimension
+
+
 
 class DisplayThread(threading.Thread):
     """
@@ -138,8 +142,10 @@ class CalibrationNode:
         self.c = None
 
         # add publisher when received the corner information TODO:
-        self.corners_pub = rospy.Publisher('corners_coordinates', corners, queue_size = 1)
-        # self.test_pub = rospy.Publisher('corners_test', points, queue_size = 1)
+        self.left_pub = rospy.Publisher('/left_corners', Float32MultiArray, queue_size = 100)
+        self.right_pub = rospy.Publisher('/right_corners', Float32MultiArray, queue_size = 100)
+
+        self.corner_pub = rospy.Publisher('/_corners_coord', corners, queue_size = 100)
 
         # self.ros_rate = rospy.Rate(10) # for publisher, but the ConsumerThread has one, ignore? TODO:
 
@@ -162,7 +168,8 @@ class CalibrationNode:
     def queue_stereo(self, lmsg, rmsg):
         self.q_stereo.append((lmsg, rmsg))
 
-    def convert_point2f_to_tuple(self, input_corners):  # change cv::Point2f to tuple 
+    def convert_point2f_to_list(self, input_corners):  # change cv::Point2f(numpy.ndarray in python) to list
+
         corner_Xs = input_corners[:,:,0]
         corner_Ys = input_corners[:,:,1]
         new_corner = zip(corner_Xs, corner_Ys)
@@ -198,37 +205,97 @@ class CalibrationNode:
         self.redraw_stereo(drawable)
 
         # added lines TODO:   
-        corner_msgs = corners()   #get msg type from corners
-        points_msgs = points()
+        left_temp = points()   #get msg type from corners
+        right_temp = points()   #get msg type from corners
+        corner_msgs = corners()
+
+# The mat is giving the ready-to-publish corner coordinates, not in the array but ina mat
+        left_mat = Float32MultiArray()
+        left_mat.layout.dim.append(MultiArrayDimension())
+        left_mat.layout.dim.append(MultiArrayDimension())
+        left_mat.layout.dim[0].label = "row"
+        left_mat.layout.dim[1].label = "col"
+        left_mat.layout.dim[0].size = 9    # if there are 9 points give 9 dimension
+        left_mat.layout.dim[1].size = 9
+        left_mat.layout.dim[0].stride = 9
+        left_mat.layout.dim[1].stride = 9
+        left_mat.layout.data_offset = 0
+        left_mat.data = [0]*9*9
+        dstride1 = left_mat.layout.dim[1].stride
+        offset = left_mat.layout.data_offset
 
         if drawable.lcorner is not None:
-            leftcorner_msg = self.convert_point2f_to_tuple(drawable.lcorner)  # want this msg to be tuple instead of cv::point2f
-            left_size = len(leftcorner_msg)
-            for x in range(left_size):
-                points_msgs = leftcorner_msg(x)
-                corner_msgs.left_corners += (points_msgs,)
+            print(drawable.lcorner)
+            # for temp_left in drawable.lcorner:                
+            #     temp_x = temp_left[0,0]
+            #     temp_y = temp_left[0,1]
+            #     left_temp.point2d = [temp_x, temp_y]
+            #     # print(left_temp)
+            #     corner_msgs.left_corners[i] = left_temp
+            #     # print("---------")
+            #     # print(corner_msgs.left_corners[i])
+            #     # print(corner_msgs.left_corners[i])
+            #     i+=1
+            #     # print("NEXT LOOP")
+            # print("corner_msgs left CORNERS")
+            # print(corner_msgs.left_corners)
+            # print("Messages")
+            # print(corner_msgs)
+
+            i_l = 0
+            for temp_left in drawable.lcorner:
+                temp_x = temp_left[0,0]
+                temp_y = temp_left[0,1]
+                left_mat.data[offset + i_l + dstride1*0] = temp_x
+                left_mat.data[offset + i_l + dstride1*1] = temp_y
+                i_l += 1
+                
+            # print(left_mat)
+
+            self.left_pub.publish(left_mat)         
         else:
             print()
             print("No LEFT corner coordinates")
             print()
 
+
+        right_mat = Float32MultiArray()
+        right_mat.layout.dim.append(MultiArrayDimension())
+        right_mat.layout.dim.append(MultiArrayDimension())
+        right_mat.layout.dim[0].label = "row"
+        right_mat.layout.dim[1].label = "col"
+        right_mat.layout.dim[0].size = 9
+        right_mat.layout.dim[1].size = 9
+        right_mat.layout.dim[0].stride = 9
+        right_mat.layout.dim[1].stride = 9
+        right_mat.layout.data_offset = 0
+        right_mat.data = [0]*9*9
+        dstride1 = right_mat.layout.dim[1].stride
+        offset = right_mat.layout.data_offset
+
         if drawable.rcorner is not None:
-            rightcorner_msg = self.convert_point2f_to_tuple(drawable.rcorner)
-            right_size = len(rightcorner_msg)
-            for x in range(right_size):
-                points_msgs = rightcorner_msg(x)
-                corner_msgs.right_corners += (points_msgs,)
+            # print(drawable.rcorner)
+            i_r = 0
+            for temp_right in drawable.rcorner:
+                temp_x = temp_right[0,0]
+                temp_y = temp_right[0,1]
+                right_mat.data[offset + i_r + dstride1*0] = temp_x
+                right_mat.data[offset + i_r + dstride1*1] = temp_y
+                i_r += 1
+                
+            # print(right_mat)
+
+            self.right_pub.publish(right_mat)
+                           
         else:
             print()
             print("No RIGHT corner coordinates")
             print()
 
 		# Publishes left and right corner coordinates, change them into vectors; TODO:
-        # print(type(corner_msgs.))
-        self.corners_pub.publish(corner_msgs)
-        rospy.sleep(0.1)
-        # print(corner_msgs)
-        
+        # print(type(corner_msgs.left_corners))
+        # self.corner_pub.publish(corner_msgs)
+        rospy.sleep(0.1)         
       
 
     def check_set_camera_info(self, response):
