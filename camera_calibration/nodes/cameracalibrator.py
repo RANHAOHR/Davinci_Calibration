@@ -206,9 +206,11 @@ class CalibrationNode:
         # left_temp = points()   #get msg type from corners
         # right_temp = points()   #get msg type from corners
         # corner_msgs = corners()
-
+        
         corner_size = len(drawable.lcorner)
-        self.corner_size_pub.publish(corner_size)
+        corner_size_msg = Int32()
+        corner_size_msg.data = corner_size
+        self.corner_size_pub.publish(corner_size_msg)
 # The mat is giving the ready-to-publish corner coordinates, push everything in a mat TODO:
         left_mat = Float32MultiArray()
         left_mat.layout.dim.append(MultiArrayDimension())
