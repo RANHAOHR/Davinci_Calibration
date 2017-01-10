@@ -12,25 +12,28 @@
 #include <ros/ros.h>
 #include <std_msgs/Float32MultiArray.h>
 #include <std_msgs/Int32.h>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include "opencv/cv.hpp"
 
-int corner_size;
+#include <davinci_calibrator/davinci_calibrator.h>
+
+
+DavinciCalibrator::DavinciCalibrator(ros::NodeHandle* nodehandle){
+	
+}
+/*int *corner_size;
 
 void cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSizeData){
 
 	int corner_size = cornerSizeData->data;
 
-	// ROS_INFO_STREAM("SIZE of corners: " << corner_size);
-	// ROS_INFO("----------------------");
+	ROS_INFO_STREAM("SIZE of corners: " << corner_size);
+	ROS_INFO("----------------------");
 
 }
 
 void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 
 	std::vector<float> left_corner_data = leftcornerData->data;
-	corner_size = 15;
+
 	std::vector<cv::Point2f> left_coords;
 	left_coords.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
 	for (int i = 0; i < corner_size; ++i)
@@ -47,7 +50,7 @@ void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr& rightcornerData){
 
 	std::vector<float> right_corner_data = rightcornerData->data;
-	corner_size = 15;
+
 	std::vector<cv::Point2f> right_coords;
 	right_coords.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
 	for (int i = 0; i < corner_size; ++i)
@@ -69,8 +72,11 @@ int main(int argc, char **argv) {
 	ros::Subscriber corner_size_subscriber = nh.subscribe("/get_corner_size", 1, cornerSizeCB);
     ros::Subscriber leftcorner_subscriber = nh.subscribe("/left_corners", 1, leftcornerCB);
     ros::Subscriber rightcorner_subscriber = nh.subscribe("/right_corners", 1, rightcornerCB);
+
+    cv::Mat left_rvec, right_tvec;
+    solvePnP()
    
     ros::spin();
     return 0; // should never get here, unless roscore dies
 }
-
+*/
