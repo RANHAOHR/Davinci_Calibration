@@ -54,6 +54,6 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(sub_test src/sub_test.cpp)
-target_link_libraries(sub_test ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+add_executable(calibration_subscriber src/calibration_subscriber.cpp)
+target_link_libraries(calibration_subscriber ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 

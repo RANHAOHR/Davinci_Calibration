@@ -225,6 +225,7 @@ class CalibrationNode:
         offset = left_mat.layout.data_offset
 
         if drawable.lcorner is not None:
+            pass
             print(drawable.lcorner)
             i_l = 0
             for temp_left in drawable.lcorner:

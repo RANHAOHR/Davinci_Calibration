@@ -7,7 +7,7 @@
     	  a- Chessboard camera coordinates are in pixel, convert them into m or mm
     // 6- Get camera to calibration pattern transformation
     //    a- Call solvePnP with world coordinates and camera coordinates of chessboard
-    // 7-
+    // 7- Get NDI tracker pose to communicate with the cammera_calibration node
 **************************/
 #include <ros/ros.h>
 #include <std_msgs/Float32MultiArray.h>
@@ -22,7 +22,7 @@ void cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSizeData){
 
 	int corner_size = cornerSizeData->data;
 
-	ROS_INFO_STREAM("Size of corners: " << corner_size);
+	ROS_INFO_STREAM("SIZE of corners: " << corner_size);
 	ROS_INFO("----------------------");
 
 }
