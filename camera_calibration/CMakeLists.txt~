@@ -1,14 +1,12 @@
 cmake_minimum_required(VERSION 2.8)
 project(camera_calibration)
 
-#find_package(catkin REQUIRED COMPONENTS
-#  roscpp
-#  rospy
-#  std_msgs
-#  message_generation
-#)
-
-find_package(catkin_simple REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  message_generation
+)
 
 find_package(OpenCV REQUIRED)
 include_directories(SYSTEM ${OpenCV_INCLUDE_DIRS})
@@ -26,9 +24,6 @@ generate_messages(
   std_msgs
 )
 
-catkin_simple()
-
-catkin_package(CATKIN_DEPENDS roscpp rospy std_msgs message_runtime)
 
 if(CATKIN_ENABLE_TESTING)
   # Unit test of calibrator.py
@@ -54,21 +49,18 @@ catkin_install_python(PROGRAMS nodes/cameracalibrator.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-)
+  include_directories(
+      include
+      ${catkin_INCLUDE_DIRS}
+  )
 
-cs_add_library(davinci_calibrator src/davinci_calibrator.cpp)
+add_library(davinci_calibrator src/davinci_calibrator.cpp)
 
 target_link_libraries(davinci_calibrator
       ${OpenCV_LIBRARIES}
       ${catkin_LIBRARIES}
 )
 
-# add_executable(calibration_subscriber src/calibration_subscriber.cpp)
-target_link_libraries(calibration_subscriber ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-
-
-cs_install()
-cs_export()
+add_executable(davinci_calibrator_node src/davinci_calibrator_node.cpp)
+target_link_libraries(davinci_calibrator ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 

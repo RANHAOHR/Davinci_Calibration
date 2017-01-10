@@ -12,6 +12,7 @@
  private:
     
     ros::NodeHandle nh_;
+
     int corner_size;
 
 
@@ -21,23 +22,14 @@
      * It also then initializes the publisher.
      */
     DavinciCalibrator(ros::NodeHandle* nodehandle);
-    
-     /*
-     * The default constructor 
-     */
-    DavinciCalibrator();
-
-    /*
-     * The deconstructor 
-     */
-    ~DavinciCalibrator();
 
     ros::Subscriber corner_size_subscriber;
     ros::Subscriber leftcorner_subscriber;
     ros::Subscriber rightcorner_subscriber;
 
-
-
+    void cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSizeData);
+    void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData);
+    void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr& rightcornerData);
 
 };
 
