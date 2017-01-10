@@ -1,3 +1,14 @@
+/***************************	
+    // 1- Tool coordinate on Camera
+    // 2- Tool coordinate on Calibration pattern
+    // 3- Frame from calibration pattern to tool 
+    // 4- Define calibration pattern corners (world coordinates) 
+    // 5- Subscribe to calibration node to get coordinates of chessboard corners
+    	  a- Chessboard camera coordinates are in pixel, convert them into m or mm
+    // 6- Get camera to calibration pattern transformation
+    //    a- Call solvePnP with world coordinates and camera coordinates of chessboard
+    // 7-
+**************************/
 #include "ros/ros.h"
 #include <ros/ros.h>
 #include <std_msgs/Float32MultiArray.h>
@@ -8,7 +19,7 @@
 void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){	
 	std::vector<float> left_corner_data = leftcornerData->data;
 
-	int corner_size = 9;
+	int corner_size = 15;
 	std::vector<cv::Point2f> left_coords;
 	left_coords.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
 	for (int i = 0; i < corner_size; ++i)
@@ -18,6 +29,7 @@ void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 		ROS_INFO_STREAM("LEFT Corner " << i << " has x: " << left_coords[i].x << " y: " << left_coords[i].y);
 
 	}
+	ROS_INFO_STREAM("size of left corners: " << left_coords.size());
 	ROS_INFO("----------------------");
 
 }
@@ -25,22 +37,26 @@ void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr& rightcornerData){	
 	std::vector<float> right_corner_data = rightcornerData->data;
 
-	int corner_size = 9;
+	int corner_size = 15;
 	std::vector<cv::Point2f> right_coords;
 	right_coords.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
 	for (int i = 0; i < corner_size; ++i)
 	{
 		right_coords[i].x = right_corner_data[i];
 		right_coords[i].y = right_corner_data[i+corner_size];
-		//ROS_INFO_STREAM("RIGHT Corner " << i << " has x: " << right_coords[i].x << " y: " << right_coords[i].y);
+		ROS_INFO_STREAM("RIGHT Corner " << i << " has x: " << right_coords[i].x << " y: " << right_coords[i].y);
 
 	}
-	// ROS_INFO("----------------------");
+	ROS_INFO_STREAM("size of right corners: " << right_coords.size());
+	ROS_INFO("----------------------");
 
 }
 
 
 int main(int argc, char **argv) {
+
+ 
+
     ros::init(argc, argv, "subscriber_test"); //name this node
     ros::NodeHandle nh; 
 
