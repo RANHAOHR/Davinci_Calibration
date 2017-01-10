@@ -16,10 +16,12 @@
 #include <opencv2/highgui/highgui.hpp>
 #include "opencv/cv.hpp"
 
-void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){	
+int corner_size = 15;
+
+void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
+
 	std::vector<float> left_corner_data = leftcornerData->data;
 
-	int corner_size = 15;
 	std::vector<cv::Point2f> left_coords;
 	left_coords.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
 	for (int i = 0; i < corner_size; ++i)
@@ -34,10 +36,10 @@ void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 
 }
 
-void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr& rightcornerData){	
+void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr& rightcornerData){
+
 	std::vector<float> right_corner_data = rightcornerData->data;
 
-	int corner_size = 15;
 	std::vector<cv::Point2f> right_coords;
 	right_coords.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
 	for (int i = 0; i < corner_size; ++i)
@@ -54,8 +56,6 @@ void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr& rightcornerData)
 
 
 int main(int argc, char **argv) {
-
- 
 
     ros::init(argc, argv, "subscriber_test"); //name this node
     ros::NodeHandle nh; 

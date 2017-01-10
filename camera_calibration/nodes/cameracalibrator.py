@@ -146,7 +146,6 @@ class CalibrationNode:
         self.right_pub = rospy.Publisher('/right_corners', Float32MultiArray, queue_size = 100)
 
         # self.corner_pub = rospy.Publisher('/_corners_coord', corners, queue_size = 100)
-
         # self.ros_rate = rospy.Rate(10) # for publisher, but the ConsumerThread has one, ignore? TODO:
 
         mth = ConsumerThread(self.q_mono, self.handle_monocular)
@@ -205,9 +204,9 @@ class CalibrationNode:
         self.redraw_stereo(drawable)
 
         # added lines TODO:   
-        left_temp = points()   #get msg type from corners
-        right_temp = points()   #get msg type from corners
-        corner_msgs = corners()
+        # left_temp = points()   #get msg type from corners
+        # right_temp = points()   #get msg type from corners
+        # corner_msgs = corners()
 
         corner_size = 15
 # The mat is giving the ready-to-publish corner coordinates, push everything in a mat TODO:
@@ -226,6 +225,7 @@ class CalibrationNode:
         offset = left_mat.layout.data_offset
 
         if drawable.lcorner is not None:
+            print(drawable.lcorner)
             i_l = 0
             for temp_left in drawable.lcorner:
                 temp_x = temp_left[0,0]
