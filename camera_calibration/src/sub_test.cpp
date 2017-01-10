@@ -19,6 +19,15 @@
 
 int corner_size;
 
+void cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSizeData){
+
+	int corner_size = cornerSizeData->data;
+
+	ROS_INFO_STREAM("Size of corners: " << corner_size);
+	ROS_INFO("----------------------");
+
+}
+
 void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 
 	std::vector<float> left_corner_data = leftcornerData->data;
@@ -54,25 +63,15 @@ void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr& rightcornerData)
 
 }
 
-void cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSizeData){
-
-	int corner_size = cornerSizeData->data;
-
-	ROS_INFO_STREAM("Size of corners: " << corner_size);
-	ROS_INFO("----------------------");
-
-}
-
 int main(int argc, char **argv) {
 
     ros::init(argc, argv, "subscriber_test");
     ros::NodeHandle nh; 
 
+	ros::Subscriber corner_size_subscriber = nh.subscribe("/get_corner_size", 1, cornerSizeCB);
     ros::Subscriber leftcorner_subscriber = nh.subscribe("/left_corners", 1, leftcornerCB);
     ros::Subscriber rightcorner_subscriber = nh.subscribe("/right_corners", 1, rightcornerCB);
-    ros::Subscriber corner_size_subscriber = nh.subscribe("/get_corner_size", 1, cornerSizeCB);
-
-
+   
     ros::spin();
     return 0; // should never get here, unless roscore dies
 }
