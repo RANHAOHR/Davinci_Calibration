@@ -206,28 +206,30 @@ class CalibrationNode:
         # left_temp = points()   #get msg type from corners
         # right_temp = points()   #get msg type from corners
         # corner_msgs = corners()
-        
-        corner_size = len(drawable.lcorner)
+                
         corner_size_msg = Int32()
-        corner_size_msg.data = corner_size
-        self.corner_size_pub.publish(corner_size_msg)
+
 # The mat is giving the ready-to-publish corner coordinates, push everything in a mat TODO:
-        left_mat = Float32MultiArray()
-        left_mat.layout.dim.append(MultiArrayDimension())
-        left_mat.layout.dim.append(MultiArrayDimension())
-        left_mat.layout.dim[0].label = "row"
-        left_mat.layout.dim[1].label = "col"
-        left_mat.layout.dim[0].size = corner_size    # if there are 9 points give 9 dimension
-        left_mat.layout.dim[1].size = corner_size
-        left_mat.layout.dim[0].stride = corner_size
-        left_mat.layout.dim[1].stride = corner_size
-        left_mat.layout.data_offset = 0
-        left_mat.data = [0]*corner_size*corner_size
-        dstride1 = left_mat.layout.dim[1].stride
-        offset = left_mat.layout.data_offset
+
 
         if drawable.lcorner is not None:
-            pass
+
+            corner_size = len(drawable.lcorner)
+
+            left_mat = Float32MultiArray()
+            left_mat.layout.dim.append(MultiArrayDimension())
+            left_mat.layout.dim.append(MultiArrayDimension())
+            left_mat.layout.dim[0].label = "row"
+            left_mat.layout.dim[1].label = "col"
+            left_mat.layout.dim[0].size = corner_size    # if there are 9 points give 9 dimension
+            left_mat.layout.dim[1].size = corner_size
+            left_mat.layout.dim[0].stride = corner_size
+            left_mat.layout.dim[1].stride = corner_size
+            left_mat.layout.data_offset = 0
+            left_mat.data = [0]*corner_size*corner_size
+            dstride1 = left_mat.layout.dim[1].stride
+            offset = left_mat.layout.data_offset
+
             print(drawable.lcorner)
             i_l = 0
             for temp_left in drawable.lcorner:
@@ -245,22 +247,26 @@ class CalibrationNode:
             print("No LEFT corner coordinates")
             print()
 
-        right_mat = Float32MultiArray()
-        right_mat.layout.dim.append(MultiArrayDimension())
-        right_mat.layout.dim.append(MultiArrayDimension())
-        right_mat.layout.dim[0].label = "row"
-        right_mat.layout.dim[1].label = "col"
-        right_mat.layout.dim[0].size = corner_size
-        right_mat.layout.dim[1].size = corner_size
-        right_mat.layout.dim[0].stride = corner_size
-        right_mat.layout.dim[1].stride = corner_size
-        right_mat.layout.data_offset = 0
-        right_mat.data = [0]*corner_size*corner_size
-        dstride1 = right_mat.layout.dim[1].stride
-        offset = right_mat.layout.data_offset
+
 
         if drawable.rcorner is not None:
-            pass
+
+            corner_size = len(drawable.rcorner)
+            
+            right_mat = Float32MultiArray()
+            right_mat.layout.dim.append(MultiArrayDimension())
+            right_mat.layout.dim.append(MultiArrayDimension())
+            right_mat.layout.dim[0].label = "row"
+            right_mat.layout.dim[1].label = "col"
+            right_mat.layout.dim[0].size = corner_size
+            right_mat.layout.dim[1].size = corner_size
+            right_mat.layout.dim[0].stride = corner_size
+            right_mat.layout.dim[1].stride = corner_size
+            right_mat.layout.data_offset = 0
+            right_mat.data = [0]*corner_size*corner_size
+            dstride1 = right_mat.layout.dim[1].stride
+            offset = right_mat.layout.data_offset
+
             print(drawable.rcorner)
             i_r = 0
             for temp_right in drawable.rcorner:
@@ -279,6 +285,10 @@ class CalibrationNode:
             print("No RIGHT corner coordinates")
             print()
 
+        if corner_size is not None:
+            corner_size_msg.data = corner_size
+            self.corner_size_pub.publish(corner_size_msg)
+            
         rospy.sleep(0.1)         
       
 

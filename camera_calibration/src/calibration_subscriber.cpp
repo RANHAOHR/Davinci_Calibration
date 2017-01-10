@@ -22,15 +22,15 @@ void cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSizeData){
 
 	int corner_size = cornerSizeData->data;
 
-	ROS_INFO_STREAM("SIZE of corners: " << corner_size);
-	ROS_INFO("----------------------");
+	// ROS_INFO_STREAM("SIZE of corners: " << corner_size);
+	// ROS_INFO("----------------------");
 
 }
 
 void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 
 	std::vector<float> left_corner_data = leftcornerData->data;
-
+	corner_size = 15;
 	std::vector<cv::Point2f> left_coords;
 	left_coords.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
 	for (int i = 0; i < corner_size; ++i)
@@ -47,7 +47,7 @@ void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr& rightcornerData){
 
 	std::vector<float> right_corner_data = rightcornerData->data;
-
+	corner_size = 15;
 	std::vector<cv::Point2f> right_coords;
 	right_coords.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
 	for (int i = 0; i < corner_size; ++i)
