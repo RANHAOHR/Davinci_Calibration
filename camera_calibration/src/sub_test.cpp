@@ -9,7 +9,6 @@
     //    a- Call solvePnP with world coordinates and camera coordinates of chessboard
     // 7-
 **************************/
-#include "ros/ros.h"
 #include <ros/ros.h>
 #include <std_msgs/Float32MultiArray.h>
 #include <std_msgs/Int32.h>
@@ -41,7 +40,6 @@ void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 		ROS_INFO_STREAM("LEFT Corner " << i << " has x: " << left_coords[i].x << " y: " << left_coords[i].y);
 
 	}
-	ROS_INFO_STREAM("size of left corners: " << left_coords.size());
 	ROS_INFO("----------------------");
 
 }
