@@ -77,6 +77,7 @@ void DavinciCalibrator::cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSize
 void DavinciCalibrator::leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 
 	std::vector<float> left_corner_data = leftcornerData->data;
+	
 	if ( corner_size != left_corner_data.size() )
 	{
 		ROS_INFO("The left corner size are not correct! Please check the LIGHTS or board info");
@@ -120,5 +121,6 @@ void DavinciCalibrator::rightcornerCB(const std_msgs::Float32MultiArray::ConstPt
 }
 
 void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> corner_coords, cv::Mat &cam_pose ){
+	
 
 }
