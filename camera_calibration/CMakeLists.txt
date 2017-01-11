@@ -54,14 +54,14 @@ catkin_install_python(PROGRAMS nodes/cameracalibrator.py
       ${catkin_INCLUDE_DIRS}
   )
 
-add_library(davinci_calibrator src/davinci_calibrator.cpp)
+add_library(davinci_calibrator src/davinci_calibrator/davinci_calibrator.cpp)
 
 target_link_libraries(davinci_calibrator
       ${OpenCV_LIBRARIES}
       ${catkin_LIBRARIES}
 )
 
-add_executable(davinci_calibrator_node src/davinci_calibrator_node.cpp)
+add_executable(davinci_calibrator_node src/davinci_calibrator/davinci_calibrator_node.cpp)
 target_link_libraries(davinci_calibrator ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 target_link_libraries(davinci_calibrator_node

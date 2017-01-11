@@ -64,3 +64,10 @@ target_link_libraries(davinci_calibrator
 add_executable(davinci_calibrator_node src/davinci_calibrator_node.cpp)
 target_link_libraries(davinci_calibrator ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
+target_link_libraries(davinci_calibrator_node
+      davinci_calibrator
+      ${OpenCV_LIBRARIES}
+      ${catkin_LIBRARIES}
+)
+
+

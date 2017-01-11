@@ -15,6 +15,13 @@
 
     int corner_size;
 
+    cv::Mat left_rvec, left_tvec;
+    cv::Mat right_rvec, right_tvec;
+
+    cv::Mat left_g, right_g;
+
+    std::vector<cv::Point2f> left_corner_coordinates;
+    std::vector<cv::Point2f> right_corner_coordinates;
 
  public:
  	 /*
@@ -30,6 +37,8 @@
     void cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSizeData);
     void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData);
     void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr& rightcornerData);
+
+    void computeCameraPose(const std::vector<cv::Point2f> corner_coords, cv::Mat &cam_pose );
 
 };
 

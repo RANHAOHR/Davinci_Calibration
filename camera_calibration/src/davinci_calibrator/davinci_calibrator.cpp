@@ -47,6 +47,17 @@ DavinciCalibrator::DavinciCalibrator(ros::NodeHandle* nodehandle) : nh_( *nodeha
 
 	corner_size = 0;
 
+	left_g = cv::Mat::eye(4,4,CV_64F);
+	right_g = cv::Mat::eye(4,4,CV_64F);
+
+	left_rvec = cv::Mat::zeros(3,1,CV_64F);
+	left_tvec = cv::Mat::zeros(3,1,CV_64F);
+	right_rvec = cv::Mat::zeros(3,1,CV_64F);
+	right_tvec = cv::Mat::zeros(3,1,CV_64F);
+
+	left_corner_coordinates.resize(corner_size);  // initialization
+	right_corner_coordinates.resize(corner_size);
+
 	corner_size_subscriber = nh_.subscribe("/get_corner_size", 1, &DavinciCalibrator::cornerSizeCB, this);
 	leftcorner_subscriber = nh_.subscribe("/left_corners", 1, &DavinciCalibrator::leftcornerCB, this);
 	rightcorner_subscriber = nh_.subscribe("/right_corners", 1, &DavinciCalibrator::rightcornerCB, this);
@@ -56,7 +67,7 @@ DavinciCalibrator::DavinciCalibrator(ros::NodeHandle* nodehandle) : nh_( *nodeha
 
 void DavinciCalibrator::cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSizeData){
 
-	corner_size = cornerSizeData->data;
+	corner_size = cornerSizeData->data;   /////it's better not to change this value frequently
 
 	ROS_INFO_STREAM("SIZE of corners: " << corner_size);
 	ROS_INFO("----------------------");
@@ -66,14 +77,19 @@ void DavinciCalibrator::cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSize
 void DavinciCalibrator::leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 
 	std::vector<float> left_corner_data = leftcornerData->data;
+	if ( corner_size != left_corner_data.size() )
+	{
+		ROS_INFO("The left corner size are not correct! Please check the LIGHTS or board info");
+	}
+	else{
+		left_corner_coordinates.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
+	}
 
-	std::vector<cv::Point2f> left_coords;
-	left_coords.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
 	for (int i = 0; i < corner_size; ++i)
 	{
-		left_coords[i].x = left_corner_data[i];
-		left_coords[i].y = left_corner_data[i+corner_size];
-		ROS_INFO_STREAM("LEFT Corner " << i << " has x: " << left_coords[i].x << " y: " << left_coords[i].y);
+		left_corner_coordinates[i].x = left_corner_data[i];
+		left_corner_coordinates[i].y = left_corner_data[i+corner_size];
+		ROS_INFO_STREAM("LEFT Corner " << i << " has x: " << left_corner_coordinates[i].x << " y: " << left_corner_coordinates[i].y);
 
 	}
 	ROS_INFO("----------------------");
@@ -84,15 +100,25 @@ void DavinciCalibrator::rightcornerCB(const std_msgs::Float32MultiArray::ConstPt
 
 	std::vector<float> right_corner_data = rightcornerData->data;
 
-	std::vector<cv::Point2f> right_coords;
-	right_coords.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
+	if ( corner_size != right_corner_data.size() )
+	{
+		ROS_INFO("The right corner size are not correct! Please check the LIGHTS or board info");
+	}
+	else{
+		right_corner_coordinates.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
+	}
+
 	for (int i = 0; i < corner_size; ++i)
 	{
-		right_coords[i].x = right_corner_data[i];
-		right_coords[i].y = right_corner_data[i+corner_size];
-		ROS_INFO_STREAM("RIGHT Corner " << i << " has x: " << right_coords[i].x << " y: " << right_coords[i].y);
+		right_corner_coordinates[i].x = right_corner_data[i];
+		right_corner_coordinates[i].y = right_corner_data[i+corner_size];
+		ROS_INFO_STREAM("RIGHT Corner " << i << " has x: " << right_corner_coordinates[i].x << " y: " << right_corner_coordinates[i].y);
 
 	}
 	ROS_INFO("----------------------");
+
+}
+
+void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> corner_coords, cv::Mat &cam_pose ){
 
 }
