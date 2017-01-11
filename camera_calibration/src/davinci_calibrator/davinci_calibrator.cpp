@@ -64,7 +64,7 @@ DavinciCalibrator::DavinciCalibrator(ros::NodeHandle* nodehandle) : nh_( *nodeha
 
 }
 
-
+/******DEBUG, if necessary and for the computing of corner coordinates******/
 void DavinciCalibrator::cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSizeData){
 
 	corner_size = cornerSizeData->data;   /////it's better not to change this value frequently
@@ -76,17 +76,12 @@ void DavinciCalibrator::cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSize
 
 void DavinciCalibrator::leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData){
 
-	std::vector<float> left_corner_data = leftcornerData->data;
+	std::vector<float> left_corner_data = leftcornerData->data;   /*received data has 0 points not the same size with corner_size */
 	
-	if ( corner_size != left_corner_data.size() )
-	{
-		ROS_INFO("The left corner size are not correct! Please check the LIGHTS or board info");
-	}
-	else{
-		left_corner_coordinates.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
-	}
+	left_corner_coordinates.resize(corner_size);  // debug, please check the python file: cameracalibrator.py
 
-	for (int i = 0; i < corner_size; ++i)
+
+	for (int i = 0; i < corner_size; ++i)   
 	{
 		left_corner_coordinates[i].x = left_corner_data[i];
 		left_corner_coordinates[i].y = left_corner_data[i+corner_size];
@@ -101,13 +96,8 @@ void DavinciCalibrator::rightcornerCB(const std_msgs::Float32MultiArray::ConstPt
 
 	std::vector<float> right_corner_data = rightcornerData->data;
 
-	if ( corner_size != right_corner_data.size() )
-	{
-		ROS_INFO("The right corner size are not correct! Please check the LIGHTS or board info");
-	}
-	else{
-		right_corner_coordinates.resize(corner_size);  // depends on your corners size, please check the python file: cameracalibrator.py
-	}
+	right_corner_coordinates.resize(corner_size);  // debug, please check the python file: cameracalibrator.py
+
 
 	for (int i = 0; i < corner_size; ++i)
 	{
@@ -121,6 +111,6 @@ void DavinciCalibrator::rightcornerCB(const std_msgs::Float32MultiArray::ConstPt
 }
 
 void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> corner_coords, cv::Mat &cam_pose ){
-	
+
 
 }
