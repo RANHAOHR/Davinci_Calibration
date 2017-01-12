@@ -49,6 +49,8 @@ import numpy
 
 from camera_calibration.msg import corners
 from camera_calibration.msg import points
+from camera_calibration.msg import intrinsic_param
+
 from camera_calibration.calibrator import MonoCalibrator, StereoCalibrator, ChessboardInfo, Patterns
 from std_msgs.msg import String
 from std_srvs.srv import Empty
@@ -143,9 +145,9 @@ class CalibrationNode:
         # add publisher when received the corner information TODO:
         self.left_pub = rospy.Publisher('/left_corners', Float32MultiArray, queue_size = 100)
         self.right_pub = rospy.Publisher('/right_corners', Float32MultiArray, queue_size = 100)
-
-        # self.corner_pub = rospy.Publisher('/_corners_coord', corners, queue_size = 100)
         self.corner_size_pub = rospy.Publisher('/get_corner_size', Int32, queue_size = 100)
+
+        # self.intrinsic_pub = rospy.Publisher('/camera_intrinsics', intrinsic_param, queue_size = 100)
 
         mth = ConsumerThread(self.q_mono, self.handle_monocular)
         mth.setDaemon(True)
@@ -210,8 +212,6 @@ class CalibrationNode:
         corner_size_msg = Int32()
 
 # The mat is giving the ready-to-publish corner coordinates, push everything in a mat TODO:
-
-
         if drawable.lcorner is not None:
 
             corner_size = len(drawable.lcorner)
@@ -230,7 +230,7 @@ class CalibrationNode:
             dstride1 = left_mat.layout.dim[1].stride
             offset = left_mat.layout.data_offset
 
-            print(drawable.lcorner)
+            print(drawable.lcorner)  # debug
             i_l = 0
             for temp_left in drawable.lcorner:
                 temp_x = temp_left[0,0]
@@ -246,8 +246,6 @@ class CalibrationNode:
             print()
             print("No LEFT corner coordinates")
             print()
-
-
 
         if drawable.rcorner is not None:
 
@@ -267,7 +265,7 @@ class CalibrationNode:
             dstride1 = right_mat.layout.dim[1].stride
             offset = right_mat.layout.data_offset
 
-            print(drawable.rcorner)
+            print(drawable.rcorner)   #debug
             i_r = 0
             for temp_right in drawable.rcorner:
                 temp_x = temp_right[0,0]
@@ -285,12 +283,31 @@ class CalibrationNode:
             print("No RIGHT corner coordinates")
             print()
 
+        # publish the coner size for computation
         if corner_size is not None:
             corner_size_msg.data = corner_size
             self.corner_size_pub.publish(corner_size_msg)
-            
+           
+        # tryp to publisht the intrinsic matrix for left and right camera
+        # if self.c.is_mono:
+        #     pass
+        # else:
+        #     stereo_cam_info = self.c.as_message()
+
+        #     left_response = self.set_left_camera_info_service(stereo_cam_info[0])
+        #     left_intrinsic = left_response.camera_info.K
+
+        #     right_response = self.set_right_camera_info_service(stereo_cam_info[1])
+        #     right_intrinsic = right_response.camera_info.K
+
+        #     camera_intrinsics_msg.left_intirnsic = left_intrinsic
+        #     camera_intrinsics_msg.right_intirnsic = right_intrinsic
+
+        #     self.intrinsic_pub.publish(camera_intrinsics_msg)
+
         rospy.sleep(0.1)         
       
+    # end of the handle_strero
 
     def check_set_camera_info(self, response):
         if response.success:

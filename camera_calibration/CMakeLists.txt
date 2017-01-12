@@ -5,7 +5,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  message_generation
+  geometry_msgs
+  message_generation cwru_opencv_common
 )
 
 find_package(OpenCV REQUIRED)
@@ -15,6 +16,7 @@ add_message_files(
   FILES
   points.msg
   corners.msg
+  intrinsic_param.msg
 )
 
 catkin_python_setup()

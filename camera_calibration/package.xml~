@@ -2,8 +2,8 @@
   <name>camera_calibration</name>
   <version>1.12.19</version>
   <description>
-     camera_calibration allows easy calibration of monocular or stereo
-     The first step of calibation for Davinci robot
+     camera_calibration allows easy calibration of monocular or stereo from ROS Camera Calibration
+     For the calibation of Davinci robot
   </description>
   <maintainer email="rxh349@case.edu">Ran Hao</maintainer>
 
