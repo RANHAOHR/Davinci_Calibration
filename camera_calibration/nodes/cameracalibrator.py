@@ -145,8 +145,9 @@ class CalibrationNode:
         # add publisher when received the corner information TODO:
         self.left_pub = rospy.Publisher('/left_corners', Float32MultiArray, queue_size = 100)
         self.right_pub = rospy.Publisher('/right_corners', Float32MultiArray, queue_size = 100)
-        self.corner_size_pub = rospy.Publisher('/get_corner_size', Int32, queue_size = 100)
 
+        self.lcorner_size_pub = rospy.Publisher('/get_corner_size_l', Int32, queue_size = 100)
+        self.rcorner_size_pub = rospy.Publisher('/get_corner_size_r', Int32, queue_size = 100)
         # self.intrinsic_pub = rospy.Publisher('/camera_intrinsics', intrinsic_param, queue_size = 100)
 
         mth = ConsumerThread(self.q_mono, self.handle_monocular)
@@ -209,12 +210,17 @@ class CalibrationNode:
         # right_temp = points()   #get msg type from corners
         # corner_msgs = corners()
                 
-        corner_size_msg = Int32()
+        lcorner_size_msg = Int32()
+        rcorner_size_msg = Int32()
 
 # The mat is giving the ready-to-publish corner coordinates, push everything in a mat TODO:
         if drawable.lcorner is not None:
 
-            corner_size = len(drawable.lcorner)
+            lcorner_size = len(drawable.lcorner)
+
+            # publish the coner size for computation
+            lcorner_size_msg.data = lcorner_size
+            self.lcorner_size_pub.publish(lcorner_size_msg)
 
             left_mat = Float32MultiArray()
             left_mat.layout.dim.append(MultiArrayDimension())
@@ -249,8 +255,11 @@ class CalibrationNode:
 
         if drawable.rcorner is not None:
 
-            corner_size = len(drawable.rcorner)
-            
+            rcorner_size = len(drawable.rcorner)
+
+            rcorner_size_msg.data = rcorner_size
+            self.rcorner_size_pub.publish(rcorner_size_msg)
+
             right_mat = Float32MultiArray()
             right_mat.layout.dim.append(MultiArrayDimension())
             right_mat.layout.dim.append(MultiArrayDimension())
@@ -282,11 +291,6 @@ class CalibrationNode:
             print()
             print("No RIGHT corner coordinates")
             print()
-
-        # publish the coner size for computation
-        if corner_size is not None:
-            corner_size_msg.data = corner_size
-            self.corner_size_pub.publish(corner_size_msg)
            
         # tryp to publisht the intrinsic matrix for left and right camera
         # if self.c.is_mono:

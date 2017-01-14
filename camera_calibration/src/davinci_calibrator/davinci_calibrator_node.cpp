@@ -12,9 +12,6 @@
 #include <ros/ros.h>
 #include <davinci_calibrator/davinci_calibrator.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-
 #include <cv_bridge/cv_bridge.h>
 
 using namespace cv_projective;
@@ -26,10 +23,12 @@ int main(int argc, char **argv) {
 
    	DavinciCalibrator calibrator(&nh);
 
-    const std::string leftCameraTopic("/stereo_example/left/camera_info");
-    const std::string rightCameraTopic("/stereo_example/right/camera_info");
+    const std::string leftCameraTopic("/davinci_endo/left/camera_info");
+    const std::string rightCameraTopic("/davinci_endo/right/camera_info");
     
     cameraProjectionMatrices cameraInfoObj(nh, leftCameraTopic, rightCameraTopic);   //camera info object
+
+    ros::Duration(1).sleep();
 
     cv::Mat P_l, P_r;
     P_l.setTo(0);
@@ -40,18 +39,55 @@ int main(int argc, char **argv) {
     right_cam_pose = cv::Mat::eye(4, 4, CV_64F);
 
 
+    bool freshCameraInfo = false;
+
     while(nh.ok()){
 
         ros::spinOnce();
 
-        P_l = cameraInfoObj.getLeftProjectionMatrix();
-        P_r = cameraInfoObj.getRightProjectionMatrix();
+        // make sure camera information is ready.
+        if(freshCameraInfo == false)
+        {
+            //retrive camera info
 
-        cv::Mat intrinsic_l = P_l.colRange(0,3).rowRange(0,3);    ///peel off the intirnsic matrix from projection matrix 
-        cv::Mat intrinsic_r = P_r.colRange(0,3).rowRange(0,3);
+            P_l = cameraInfoObj.getLeftProjectionMatrix();
+            P_r = cameraInfoObj.getRightProjectionMatrix();
 
-        calibrator.computeCameraPose(calibrator.left_corner_coordinates, intrinsic_l, left_cam_pose);  ///get camera poses
-        calibrator.computeCameraPose(calibrator.right_corner_coordinates, intrinsic_r, right_cam_pose);
+            if(P_l.at<double>(0,0) != 0 && P_r.at<double>(0,0))
+            {
+                ROS_INFO("obtained camera info");
+                freshCameraInfo = true;
+
+                cv::Mat intrinsic_l = P_l.colRange(0,3).rowRange(0,3);    ///peel off the intirnsic matrix from projection matrix 
+                cv::Mat intrinsic_r = P_r.colRange(0,3).rowRange(0,3);
+
+                ROS_INFO_STREAM("Camera matrix left: " << intrinsic_l);
+                ROS_INFO_STREAM("Camera matrix right: " << intrinsic_r);
+
+                if (calibrator.freshLeftCorner && calibrator.freshRightCorner )
+                {
+
+                    calibrator.setBoardCoord();  ///set the 3d coordinates for the chessboard or circle board
+                    
+                    if (calibrator.boardMatch) //when get the board corners match the 3d board set up
+                    {
+                        calibrator.computeCameraPose(calibrator.left_corner_coordinates, intrinsic_l, left_cam_pose);  ///get camera poses
+                        calibrator.computeCameraPose(calibrator.right_corner_coordinates, intrinsic_r, right_cam_pose);
+
+                        ROS_INFO_STREAM("LEFT Camera Pose: " << left_cam_pose );
+                        ROS_INFO_STREAM("RIGHT Camera Pose: " << right_cam_pose );
+                    }
+
+
+
+                }
+
+            }
+            
+
+        }
+        
+        freshCameraInfo = false;
 
     }
 

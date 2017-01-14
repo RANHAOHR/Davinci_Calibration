@@ -22,11 +22,8 @@
     
     ros::NodeHandle nh_;
 
-    int corner_size;
-
-    // cv::Mat left_cam_pose, right_cam_pose;
-
-
+    int lcorner_size;
+    int rcorner_size;
 
     std::vector<cv::Point3f> board_coordinates;  /////the  3d coordinates that pass to SolvePnP
     std::vector<cv::Mat> marker_poses;
@@ -38,17 +35,25 @@
      */
     DavinciCalibrator(ros::NodeHandle* nodehandle);
 
+    bool freshLeftCorner;
+    bool freshRightCorner;
+    bool boardMatch; ///only support 3 * 5 board
+
     std::vector<cv::Point2f> left_corner_coordinates;
     std::vector<cv::Point2f> right_corner_coordinates;
 
-    ros::Subscriber corner_size_subscriber;
+    ros::Subscriber leftcorner_size_subscriber;
+    ros::Subscriber rightcorner_size_subscriber;
+
     ros::Subscriber leftcorner_subscriber;
     ros::Subscriber rightcorner_subscriber;
 
     ros::Subscriber polaris_subscriber;
     
 
-    void cornerSizeCB(const std_msgs::Int32::ConstPtr& cornerSizeData);
+    void leftCornerSizeCB(const std_msgs::Int32::ConstPtr& leftCornerSizeData);
+    void rightCornerSizeCB(const std_msgs::Int32::ConstPtr& rightCornerSizeData);
+
     void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData);
     void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr& rightcornerData);
 
@@ -59,6 +64,7 @@
     *   void camIntrinsicCB(const camera_calibration::intrinsic_param& intrinsicsData);
     */
 
+    void setBoardCoord();
     void computeCameraPose(const std::vector<cv::Point2f> &corner_coords, const cv::Mat &cameraMatrix, cv::Mat &output_cam_pose );
     void convertQuaternionsToRvec( const cv::Mat &quaternion, cv::Mat &Rod_rvec );
 };
