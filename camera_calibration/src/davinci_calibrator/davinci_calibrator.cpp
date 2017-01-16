@@ -277,7 +277,7 @@ void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> &corner
     distCoeffs.at<double>(2) = 0;
     distCoeffs.at<double>(3) = 0;
 
-	ROS_INFO_STREAM("board_coordinates: " << board_coordinates);
+	// ROS_INFO_STREAM("board_coordinates: " << board_coordinates);
 	ROS_INFO_STREAM("corner_coords: " << corner_coords);
 
 	cv::solvePnP(board_coordinates, corner_coords, cameraMatrix, distCoeffs, cam_rvec, cam_tvec);

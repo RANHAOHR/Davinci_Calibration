@@ -227,12 +227,12 @@ class CalibrationNode:
             left_mat.layout.dim.append(MultiArrayDimension())
             left_mat.layout.dim[0].label = "row"
             left_mat.layout.dim[1].label = "col"
-            left_mat.layout.dim[0].size = corner_size    # if there are 9 points give 9 dimension
-            left_mat.layout.dim[1].size = corner_size
-            left_mat.layout.dim[0].stride = corner_size
-            left_mat.layout.dim[1].stride = corner_size
+            left_mat.layout.dim[0].size = lcorner_size    # if there are 9 points give 9 dimension
+            left_mat.layout.dim[1].size = lcorner_size
+            left_mat.layout.dim[0].stride = lcorner_size
+            left_mat.layout.dim[1].stride = lcorner_size
             left_mat.layout.data_offset = 0
-            left_mat.data = [0]*corner_size*corner_size
+            left_mat.data = [0]*lcorner_size*lcorner_size
             dstride1 = left_mat.layout.dim[1].stride
             offset = left_mat.layout.data_offset
 
@@ -265,12 +265,12 @@ class CalibrationNode:
             right_mat.layout.dim.append(MultiArrayDimension())
             right_mat.layout.dim[0].label = "row"
             right_mat.layout.dim[1].label = "col"
-            right_mat.layout.dim[0].size = corner_size
-            right_mat.layout.dim[1].size = corner_size
-            right_mat.layout.dim[0].stride = corner_size
-            right_mat.layout.dim[1].stride = corner_size
+            right_mat.layout.dim[0].size = rcorner_size
+            right_mat.layout.dim[1].size = rcorner_size
+            right_mat.layout.dim[0].stride = rcorner_size
+            right_mat.layout.dim[1].stride = rcorner_size
             right_mat.layout.data_offset = 0
-            right_mat.data = [0]*corner_size*corner_size
+            right_mat.data = [0]*rcorner_size*rcorner_size
             dstride1 = right_mat.layout.dim[1].stride
             offset = right_mat.layout.data_offset
 
