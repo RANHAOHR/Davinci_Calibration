@@ -79,7 +79,6 @@ void DavinciCalibrator::leftCornerSizeCB(const std_msgs::Int32::ConstPtr& leftCo
 	lcorner_size = leftCornerSizeData->data;   /////it's better not to change this value frequently
 
 	ROS_INFO_STREAM("SIZE of left corners: " << lcorner_size);
-	ROS_INFO("----------------------");
 
 }
 
@@ -88,7 +87,6 @@ void DavinciCalibrator::rightCornerSizeCB(const std_msgs::Int32::ConstPtr& right
 	rcorner_size = rightCornerSizeData->data;   /////it's better not to change this value frequently
 
 	ROS_INFO_STREAM("SIZE of right corners: " << rcorner_size);
-	ROS_INFO("----------------------");
 
 }
 
@@ -97,24 +95,22 @@ void DavinciCalibrator::leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr
 	std::vector<float> left_corner_data = leftcornerData->data;   /*received data has 0 points not the same size with corner_size */
 	
 	left_corner_coordinates.resize(lcorner_size);  //
-
-	if (lcorner_size > 0)
+	if (lcorner_size > 0 && left_corner_data.size() > 0) //both topics received
 	{
-		if (left_corner_data.size() > 0)
+
+		for (int i = 0; i < lcorner_size; ++i)   
 		{
-			for (int i = 0; i < lcorner_size; ++i)   
-			{
-				left_corner_coordinates[i].x = left_corner_data[i];
-				left_corner_coordinates[i].y = left_corner_data[i+lcorner_size];
-				// ROS_INFO_STREAM("LEFT Corner " << i << " has x: " << left_corner_coordinates[i].x << " y: " << left_corner_coordinates[i].y);
-
-			}
-
-			ROS_INFO("----- get LEFT corner -----");
-			freshLeftCorner = true;
+			left_corner_coordinates[i].x = left_corner_data[i];
+			left_corner_coordinates[i].y = left_corner_data[i+lcorner_size];
+			// ROS_INFO_STREAM("LEFT Corner " << i << " has x: " << left_corner_coordinates[i].x << " y: " << left_corner_coordinates[i].y);
 
 		}
 
+		ROS_INFO("----- get LEFT corner -----");
+		freshLeftCorner = true;
+
+	}else{
+		freshLeftCorner = false;
 	}
 
 }
@@ -124,27 +120,22 @@ void DavinciCalibrator::rightcornerCB(const std_msgs::Float32MultiArray::ConstPt
 	std::vector<float> right_corner_data = rightcornerData->data;
 
 	right_corner_coordinates.resize(rcorner_size);  
-
-	if (rcorner_size > 0) //
+	if (rcorner_size > 0 && right_corner_data.size() > 0) //both topics received
 	{
-		if (right_corner_data.size() > 0)
+		for (int i = 0; i < rcorner_size; ++i)   
 		{
-			for (int i = 0; i < rcorner_size; ++i)   
-			{
-				right_corner_coordinates[i].x = right_corner_data[i];
-				right_corner_coordinates[i].y = right_corner_data[i+rcorner_size];
-				// ROS_INFO_STREAM("RIGHT Corner " << i << " has x: " << right_corner_coordinates[i].x << " y: " << right_corner_coordinates[i].y);
-
-			}
-
-			ROS_INFO("----- get RIGHT corner -----");
-			freshRightCorner = true;
+			right_corner_coordinates[i].x = right_corner_data[i];
+			right_corner_coordinates[i].y = right_corner_data[i+rcorner_size];
+			// ROS_INFO_STREAM("RIGHT Corner " << i << " has x: " << right_corner_coordinates[i].x << " y: " << right_corner_coordinates[i].y);
 
 		}
 
+		ROS_INFO("----- get RIGHT corner -----");
+		freshRightCorner = true;
+
+	}else{
+		freshRightCorner = false;
 	}
-	
-	// ROS_INFO("----------------------");
 
 }
 
@@ -196,7 +187,7 @@ void DavinciCalibrator::setBoardCoord(){
 
     }
     else{ 	
-        ROS_INFO("Cannot set the 3D coordinates correctly");
+        ROS_ERROR("Cannot set the 3D coordinates correctly");
         boardMatch = false;
             
     }
@@ -214,7 +205,7 @@ void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPt
     cv::Mat Tquaternion = cv::Mat::zeros(4,1,CV_64F);
     cv::Mat Trot = cv::Mat::zeros(3,3,CV_64F);
 
-    if(target_size > 0){
+    if(target_size == 2){
         for (int i = 0; i < target_size; ++i) {
             marker_poses[i] = cv::Mat::eye(4,4,CV_64F);
 
@@ -234,15 +225,26 @@ void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPt
 
             ROS_INFO_STREAM("marker poses: " << marker_poses[i]);
 
-            computeMakersGeometry( marker_poses, g_mm);
-
-            ROS_INFO_STREAM("The transformation between two markers: " << g_mm);
         }
 
-        freshMakers = true;
+        double marker_1 = marker_poses[0].at<double>(0,0);
+        double marker_2 = marker_poses[1].at<double>(0,0);
+
+        if( ( marker_1 != marker_1 ) && ( marker_2 != marker_2 ) )  //if the marker poses are not NAN
+        {
+        	ROS_ERROR("Polaris sensor gives NAN poses, please check the positions of markers and tracker! ");
+        	freshMakers = false;
+        }
+        else{
+
+        	computeMakersGeometry( marker_poses, g_mm);
+			ROS_INFO_STREAM("The transformation between two markers: " << g_mm);
+			freshMakers = true;
+        }
+
     }
     else{
-        ROS_INFO_STREAM("Not enough target detected, " << target_size << " Target detected");
+        ROS_INFO_STREAM("Non-expected number of target detected, " << target_size << " Targets");
         freshMakers = false; //
     }
 }

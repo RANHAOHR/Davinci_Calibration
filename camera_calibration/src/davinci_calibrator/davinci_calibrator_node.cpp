@@ -54,14 +54,14 @@ int main(int argc, char **argv) {
 
             if(P_l.at<double>(0,0) != 0 && P_r.at<double>(0,0))
             {
-                ROS_INFO("obtained camera info");
+                // ROS_INFO("obtained camera info");
                 freshCameraInfo = true;
 
                 cv::Mat intrinsic_l = P_l.colRange(0,3).rowRange(0,3);    ///peel off the intirnsic matrix from projection matrix 
                 cv::Mat intrinsic_r = P_r.colRange(0,3).rowRange(0,3);
 
-                ROS_INFO_STREAM("Camera matrix left: " << intrinsic_l);
-                ROS_INFO_STREAM("Camera matrix right: " << intrinsic_r);
+                // ROS_INFO_STREAM("Camera matrix left: " << intrinsic_l);
+                // ROS_INFO_STREAM("Camera matrix right: " << intrinsic_r);
 
                 if (calibrator.freshLeftCorner && calibrator.freshRightCorner )
                 {
@@ -75,20 +75,30 @@ int main(int argc, char **argv) {
                         ROS_INFO_STREAM("LEFT Camera Pose: " << left_cam_pose );
                         ROS_INFO_STREAM("RIGHT Camera Pose: " << right_cam_pose );
 
-                        if(calibrator.freshMakers){
+                        if(calibrator.freshMakers){  //get fresh maker poses
                             //when get everything ready, compute G_CM
                             G_CM_l = calibrator.g_mm * calibrator.g_bm * left_cam_pose;
                             G_CM_r = calibrator.g_mm * calibrator.g_bm * right_cam_pose;
 
                         }
+
                     }
-
                 }
-
+                else{
+                    ROS_INFO(" Nothing received! ");
+                }
+                
             }
-        }
         
+        }
+
+        calibrator.freshLeftCorner = false;
+        calibrator.freshRightCorner = false;
+        calibrator.boardMatch = false;
+        calibrator.freshMakers = false;
+
         freshCameraInfo = false;
+        ros::Duration(1).sleep();
     }
 
     return 0; // should never get here, unless roscore dies
