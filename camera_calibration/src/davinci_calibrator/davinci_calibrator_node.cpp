@@ -12,8 +12,6 @@
 #include <ros/ros.h>
 #include <davinci_calibrator/davinci_calibrator.h>
 
-#include <cv_bridge/cv_bridge.h>
-
 using namespace cv_projective;
 
 int main(int argc, char **argv) {
@@ -38,6 +36,8 @@ int main(int argc, char **argv) {
     left_cam_pose = cv::Mat::eye(4, 4, CV_64F);
     right_cam_pose = cv::Mat::eye(4, 4, CV_64F);
 
+    cv::Mat G_CM_l = cv::Mat::eye(4,4,CV_64F); ///g of maker relative to left camera
+    cv::Mat G_CM_r = cv::Mat::eye(4,4,CV_64F); ///g of maker relative to right camera
 
     bool freshCameraInfo = false;
 
@@ -46,10 +46,9 @@ int main(int argc, char **argv) {
         ros::spinOnce();
 
         // make sure camera information is ready.
-        if(freshCameraInfo == false)
+        if(!freshCameraInfo)
         {
             //retrive camera info
-
             P_l = cameraInfoObj.getLeftProjectionMatrix();
             P_r = cameraInfoObj.getRightProjectionMatrix();
 
@@ -66,7 +65,6 @@ int main(int argc, char **argv) {
 
                 if (calibrator.freshLeftCorner && calibrator.freshRightCorner )
                 {
-
                     calibrator.setBoardCoord();  ///set the 3d coordinates for the chessboard or circle board
                     
                     if (calibrator.boardMatch) //when get the board corners match the 3d board set up
@@ -76,19 +74,21 @@ int main(int argc, char **argv) {
 
                         ROS_INFO_STREAM("LEFT Camera Pose: " << left_cam_pose );
                         ROS_INFO_STREAM("RIGHT Camera Pose: " << right_cam_pose );
+
+                        if(calibrator.freshMakers){
+                            //when get everything ready, compute G_CM
+                            G_CM_l = calibrator.g_mm * calibrator.g_bm * left_cam_pose;
+                            G_CM_r = calibrator.g_mm * calibrator.g_bm * right_cam_pose;
+
+                        }
                     }
-
-
 
                 }
 
             }
-            
-
         }
         
         freshCameraInfo = false;
-
     }
 
     return 0; // should never get here, unless roscore dies

@@ -38,24 +38,29 @@
  */
 #include <ros/ros.h>
 #include <davinci_calibrator/davinci_calibrator.h>
-#include "../../include/davinci_calibrator/davinci_calibrator.h"
 
 DavinciCalibrator::DavinciCalibrator(ros::NodeHandle* nodehandle) : nh_( *nodehandle ){
 
 	lcorner_size = 0;
 	rcorner_size = 0;
-//	left_cam_pose = cv::Mat::eye(4,4,CV_64F);
-//	right_cam_pose = cv::Mat::eye(4,4,CV_64F);
 
 	freshLeftCorner = false;
 	freshRightCorner = false;
 	boardMatch = false;
+    freshMakers = false;
 
 	left_corner_coordinates.resize(lcorner_size);  // initialization
 	right_corner_coordinates.resize(rcorner_size);
 
     // marker_poses.resize(0);
     // board_coordinates.resize(0);  ////should resize this after receive the real corner size
+
+    g_bm = 	(cv::Mat_<double>(4,4) << 0, 1, 0, -100,   ///meters or millimeters
+            0, 0, 1, 0,
+            1, 0, 0, 0,
+            0, 0,0, 1);
+
+    g_mm = cv::Mat::eye(4,4,CV_64F);
 
 	leftcorner_size_subscriber = nh_.subscribe("/get_corner_size_l", 1, &DavinciCalibrator::leftCornerSizeCB, this);
 	rightcorner_size_subscriber = nh_.subscribe("/get_corner_size_r", 1, &DavinciCalibrator::rightCornerSizeCB, this);
@@ -182,7 +187,6 @@ void DavinciCalibrator::setBoardCoord(){
 	        /*** set z coordinates for board***/
 	        for (int k = 0; k < corner_size ; ++k) {
 	            board_coordinates[k].z = 0.0;
-
 	        }
     	}
     	else{
@@ -202,7 +206,6 @@ void DavinciCalibrator::setBoardCoord(){
 void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPtr& target_poses){
 
     unsigned long target_size = target_poses->poses.size();
-    ROS_INFO_STREAM(target_size << " Target detected");
 
     marker_poses.resize(target_size);
 
@@ -211,28 +214,37 @@ void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPt
     cv::Mat Tquaternion = cv::Mat::zeros(4,1,CV_64F);
     cv::Mat Trot = cv::Mat::zeros(3,3,CV_64F);
 
-    for (int i = 0; i < target_size; ++i) {
+    if(target_size > 0){
+        for (int i = 0; i < target_size; ++i) {
+            marker_poses[i] = cv::Mat::eye(4,4,CV_64F);
 
-        marker_poses[i] = cv::Mat::zeros(4,4,CV_64F);
+            Ttvec.at<double>(0,0) = target_poses->poses[i].position.x;
+            Ttvec.at<double>(1,0) = target_poses->poses[i].position.y;
+            Ttvec.at<double>(2,0) = target_poses->poses[i].position.z;
+            Tquaternion.at<double>(0,0) = target_poses->poses[i].orientation.x;
+            Tquaternion.at<double>(1,0) = target_poses->poses[i].orientation.y;
+            Tquaternion.at<double>(2,0) = target_poses->poses[i].orientation.z;
+            Tquaternion.at<double>(3,0) = target_poses->poses[i].orientation.w;
 
-        Ttvec.at<double>(0,0) = target_poses->poses[i].position.x;
-        Ttvec.at<double>(1,0) = target_poses->poses[i].position.y;
-        Ttvec.at<double>(2,0) = target_poses->poses[i].position.z;
-        Tquaternion.at<double>(0,0) = target_poses->poses[i].orientation.x;
-        Tquaternion.at<double>(1,0) = target_poses->poses[i].orientation.y;
-        Tquaternion.at<double>(2,0) = target_poses->poses[i].orientation.z;
-        Tquaternion.at<double>(3,0) = target_poses->poses[i].orientation.w;
+            convertQuaternionsToRvec(Tquaternion, Trvec);
+            cv::Rodrigues(Trvec, Trot);
 
-        convertQuaternionsToRvec(Tquaternion, Trvec);
+            Trot.copyTo(marker_poses[i].colRange(0,3).rowRange(0,3));
+            Ttvec.copyTo(marker_poses[i].colRange(3,4).rowRange(0,3));
 
-        cv::Rodrigues(Trvec, Trot);
+            ROS_INFO_STREAM("marker poses: " << marker_poses[i]);
 
-        Trot.copyTo(marker_poses[i].colRange(0,3).rowRange(0,3));
-        Ttvec.copyTo(marker_poses[i].colRange(3,4).rowRange(0,3));
+            computeMakersGeometry( marker_poses, g_mm);
 
-        ROS_INFO_STREAM("marker poses: " << marker_poses[i]);
+            ROS_INFO_STREAM("The transformation between two markers: " << g_mm);
+        }
+
+        freshMakers = true;
     }
-
+    else{
+        ROS_INFO_STREAM("Not enough target detected, " << target_size << " Target detected");
+        freshMakers = false; //
+    }
 }
 
 void DavinciCalibrator::convertQuaternionsToRvec( const cv::Mat &quaternion, cv::Mat &Rod_rvec ){
@@ -254,7 +266,7 @@ void DavinciCalibrator::convertQuaternionsToRvec( const cv::Mat &quaternion, cv:
 }
 void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> &corner_coords, const cv::Mat &cameraMatrix, cv::Mat &output_cam_pose){
 
-    output_cam_pose = cv::Mat::zeros(4,4,CV_64F);
+    output_cam_pose = cv::Mat::eye(4,4,CV_64F);
 
 	cv::Mat cam_rvec = cv::Mat::zeros(3,1,CV_64F);
 	cv::Mat cam_tvec = cv::Mat::zeros(3,1,CV_64F);
@@ -270,23 +282,54 @@ void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> &corner
 
 	cv::solvePnP(board_coordinates, corner_coords, cameraMatrix, distCoeffs, cam_rvec, cam_tvec);
 
-	ROS_INFO_STREAM("cam_rvec: " << cam_rvec);
-	ROS_INFO_STREAM("cam_tvec: " << cam_tvec);
+//	ROS_INFO_STREAM("cam_rvec: " << cam_rvec);
+//	ROS_INFO_STREAM("cam_tvec: " << cam_tvec);
 
 	cv::Mat R;
 	cv::Rodrigues(cam_rvec, R); // R is 3x3
 
-	ROS_INFO_STREAM("Rodrigues: " << R);
+//	ROS_INFO_STREAM("Rodrigues: " << R);
 
 	/////get the inverse of R and T and put it in the output camera pose
-//	R = R.t();  // rotation of inverse
-//	cam_tvec = -R * cam_tvec; // translation of inverse
+	R = R.t();  // rotation of inverse
+	cam_tvec = -R * cam_tvec; // translation of inverse
 
-    cv::Mat world_pose = cv::Mat::eye(4,4,CV_64F);
-	R.copyTo(world_pose.colRange(0,3).rowRange(0,3));
-	cam_tvec.copyTo(world_pose.colRange(3,4).rowRange(0,3));
+    // cv::Mat world_pose = cv::Mat::eye(4,4,CV_64F);
+	R.copyTo(output_cam_pose.colRange(0,3).rowRange(0,3));
+	cam_tvec.copyTo(output_cam_pose.colRange(3,4).rowRange(0,3));
 
-	ROS_INFO_STREAM("world_pose: " << world_pose);
-    output_cam_pose = world_pose.inv();  ////TODO: notice the zero determinant case
+}
+
+//use this computation to avoid the singularity of opencv inv() for a 4*4 mat
+void DavinciCalibrator::computeInv(const cv::Mat &inputMat, cv::Mat &outputMat){
+
+    outputMat = cv::Mat::eye(4,4,CV_64F);
+
+    cv::Mat R = inputMat.colRange(0,3).rowRange(0,3);
+    cv::Mat p = inputMat.colRange(3,4).rowRange(0,3);
+
+    R = R.t();  // rotation of inverse
+    p = -R * p; // translation of inverse
+
+    R.copyTo(outputMat.colRange(0,3).rowRange(0,3));
+    p.copyTo(outputMat.colRange(3,4).rowRange(0,3));
+
+
+}
+void DavinciCalibrator::computeMakersGeometry( std::vector<cv::Mat> &markers, cv::Mat &outputGeometry){
+
+    unsigned long maker_size = markers.size();
+
+    if(maker_size != 2){
+        ROS_INFO("Makers size is not 2, check the tracker! ");
+    }
+    else{
+        cv::Mat inv_marker_board = cv::Mat::eye(4,4,CV_64F);
+        outputGeometry = cv::Mat::eye(4,4,CV_64F);
+
+        computeInv(markers[0], inv_marker_board);
+        outputGeometry =  markers[1] * inv_marker_board;
+
+    }
 
 }

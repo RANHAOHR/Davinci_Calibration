@@ -1,66 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CMakeRunConfigurationManager" shouldGenerate="true" assignedExecutableTargets="true" buildAllGenerated="true">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" buildAllGenerated="true">
     <generated>
       <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_py" />
       <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_cpp" />
-      <config projectName="camera_calibration" targetName="clean_test_results_camera_calibration" />
+      <config projectName="camera_calibration" targetName="camera_calibration_geneus" />
+      <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_eus" />
       <config projectName="camera_calibration" targetName="download_extra_data" />
-      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_lisp" />
       <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_lisp" />
       <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_lisp" />
       <config projectName="camera_calibration" targetName="_run_tests_camera_calibration_nosetests_test.directed.py" />
-      <config projectName="camera_calibration" targetName="roscpp_generate_messages_py" />
       <config projectName="camera_calibration" targetName="roscpp_generate_messages_cpp" />
       <config projectName="camera_calibration" targetName="_run_tests_camera_calibration_nosetests_test.multiple_boards.py" />
-      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_py" />
-      <config projectName="camera_calibration" targetName="_run_tests_camera_calibration_nosetests" />
+      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_eus" />
       <config projectName="camera_calibration" targetName="run_tests_camera_calibration_nosetests" />
       <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_py" />
       <config projectName="camera_calibration" targetName="_camera_calibration_generate_messages_check_deps_points" />
-      <config projectName="camera_calibration" targetName="roscpp_generate_messages_lisp" />
-      <config projectName="camera_calibration" targetName="_camera_calibration_generate_messages_check_deps_intrinsic_param" />
       <config projectName="camera_calibration" targetName="camera_calibration_genlisp" />
       <config projectName="camera_calibration" targetName="davinci_calibrator_node" />
       <config projectName="camera_calibration" targetName="_run_tests_camera_calibration" />
-      <config projectName="camera_calibration" targetName="run_tests_camera_calibration_nosetests_test.directed.py" />
-      <config projectName="camera_calibration" targetName="doxygen" />
+      <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_eus" />
       <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_py" />
-      <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_cpp" />
-      <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_py" />
       <config projectName="camera_calibration" targetName="camera_calibration_gencpp" />
-      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_lisp" />
       <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_cpp" />
       <config projectName="camera_calibration" targetName="_camera_calibration_generate_messages_check_deps_corners" />
       <config projectName="camera_calibration" targetName="clean_test_results" />
-      <config projectName="camera_calibration" targetName="tests" />
-      <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_lisp" />
       <config projectName="camera_calibration" targetName="multi_board_calibration.tar.gz" />
       <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_cpp" />
       <config projectName="camera_calibration" targetName="gtest" />
-      <config projectName="camera_calibration" targetName="davinci_calibrator" />
-      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_cpp" />
       <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_py" />
-      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_cpp" />
       <config projectName="camera_calibration" targetName="camera_calibration.tar.gz" />
       <config projectName="camera_calibration" targetName="run_tests_camera_calibration" />
       <config projectName="camera_calibration" targetName="gtest_main" />
       <config projectName="camera_calibration" targetName="camera_calibration_genpy" />
-      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages" />
-      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_lisp" />
       <config projectName="camera_calibration" targetName="run_tests_camera_calibration_nosetests_test.multiple_boards.py" />
       <config projectName="camera_calibration" targetName="run_tests" />
+      <config projectName="camera_calibration" targetName="clean_test_results_camera_calibration" />
+      <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_eus" />
+      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_lisp" />
+      <config projectName="camera_calibration" targetName="roscpp_generate_messages_py" />
+      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_eus" />
+      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_py" />
+      <config projectName="camera_calibration" targetName="_run_tests_camera_calibration_nosetests" />
+      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_eus" />
+      <config projectName="camera_calibration" targetName="roscpp_generate_messages_lisp" />
+      <config projectName="camera_calibration" targetName="_camera_calibration_generate_messages_check_deps_intrinsic_param" />
+      <config projectName="camera_calibration" targetName="run_tests_camera_calibration_nosetests_test.directed.py" />
+      <config projectName="camera_calibration" targetName="doxygen" />
+      <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_cpp" />
+      <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_py" />
+      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_lisp" />
+      <config projectName="camera_calibration" targetName="tests" />
+      <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_lisp" />
+      <config projectName="camera_calibration" targetName="roscpp_generate_messages_eus" />
+      <config projectName="camera_calibration" targetName="davinci_calibrator" />
+      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_cpp" />
+      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_cpp" />
+      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages" />
+      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_lisp" />
     </generated>
   </component>
-  <component name="CMakeSettings" AUTO_RELOAD="false" GENERATION_PASS_SYSTEM_ENVIRONMENT="true">
-    <ADDITIONAL_GENERATION_ENVIRONMENT>
-      <envs />
-    </ADDITIONAL_GENERATION_ENVIRONMENT>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration CONFIG_NAME="Debug" />
+    </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dca58c7d-e043-45b8-a299-261a835b56bd" name="Default" comment="" />
     <ignored path="camera_calibration.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,25 +86,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="davinci_calibrator.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
+      <file leaf-file-name="davinci_calibrator_node.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="185" column="0" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+            <state relative-caret-position="396">
+              <caret line="88" column="9" lean-forward="true" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
               <folding>
-                <element signature="e#1769#1789#0" expanded="true" />
+                <element signature="e#646#666#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="davinci_calibrator_node.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
+      <file leaf-file-name="davinci_calibrator.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
+            <state relative-caret-position="288">
+              <caret line="47" column="29" lean-forward="true" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
               <folding>
-                <element signature="e#646#666#0" expanded="true" />
+                <element signature="e#1769#1789#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,8 +113,8 @@
       <file leaf-file-name="davinci_calibrator.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/include/davinci_calibrator/davinci_calibrator.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="62" column="82" selection-start-line="62" selection-start-column="82" selection-end-line="62" selection-end-column="82" />
+            <state relative-caret-position="468">
+              <caret line="61" column="36" lean-forward="true" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
               <folding>
                 <element signature="e#59#79#0" expanded="true" />
               </folding>
@@ -116,8 +125,8 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-286">
-              <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+            <state relative-caret-position="126">
+              <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -127,7 +136,7 @@
         <entry file="file://$PROJECT_DIR$/package.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -153,20 +162,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1985" />
+    <option name="x" value="65" />
     <option name="y" value="24" />
     <option name="width" value="1855" />
     <option name="height" value="1056" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -283,6 +282,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="settings.editor.selected.configurable" value="reference.idesettings.quicklists" />
   </component>
   <component name="RunManager" selected="Application.Build All">
     <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="camera_calibration" TARGET_NAME="_camera_calibration_generate_messages_check_deps_corners" CONFIG_NAME="Debug" TEST_MODE="SUITE_TEST">
@@ -311,6 +312,12 @@
       <working_directory value="$PROJECT_DIR$" />
       <framework value="gotest" />
       <kind value="DIRECTORY" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -346,10 +353,16 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
+      <command value="run" />
       <scripts />
       <node-interpreter value="project" />
       <envs />
@@ -656,7 +669,39 @@
       <envs />
       <method />
     </configuration>
-    <list size="49">
+    <configuration default="false" name="camera_calibration_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="camera_calibration" TARGET_NAME="camera_calibration_generate_messages_eus" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="camera_calibration_geneus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="camera_calibration" TARGET_NAME="camera_calibration_geneus" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="cwru_opencv_common_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="camera_calibration" TARGET_NAME="cwru_opencv_common_generate_messages_eus" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="geometry_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="camera_calibration" TARGET_NAME="geometry_msgs_generate_messages_eus" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="roscpp_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="camera_calibration" TARGET_NAME="roscpp_generate_messages_eus" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="rosgraph_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="camera_calibration" TARGET_NAME="rosgraph_msgs_generate_messages_eus" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="sensor_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="camera_calibration" TARGET_NAME="sensor_msgs_generate_messages_eus" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="std_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="camera_calibration" TARGET_NAME="std_msgs_generate_messages_eus" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <list size="57">
       <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
       <item index="1" class="java.lang.String" itemvalue="Application._camera_calibration_generate_messages_check_deps_corners" />
       <item index="2" class="java.lang.String" itemvalue="Application._camera_calibration_generate_messages_check_deps_intrinsic_param" />
@@ -706,6 +751,14 @@
       <item index="46" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_cpp" />
       <item index="47" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_lisp" />
       <item index="48" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_py" />
+      <item index="49" class="java.lang.String" itemvalue="Application.camera_calibration_generate_messages_eus" />
+      <item index="50" class="java.lang.String" itemvalue="Application.camera_calibration_geneus" />
+      <item index="51" class="java.lang.String" itemvalue="Application.cwru_opencv_common_generate_messages_eus" />
+      <item index="52" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_eus" />
+      <item index="53" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_eus" />
+      <item index="54" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_eus" />
+      <item index="55" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_eus" />
+      <item index="56" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_eus" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -720,34 +773,39 @@
       <updated>1484166516178</updated>
       <workItem from="1484166517522" duration="652000" />
       <workItem from="1484237825827" duration="7444000" />
+      <workItem from="1484589818778" duration="4877000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8096000" />
+    <option name="totallyTimeSpent" value="12973000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1985" y="24" width="1855" height="1056" extended-state="6" />
+    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32858595" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -767,8 +825,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1188">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#1769#1789#0" expanded="true" />
           </folding>
@@ -777,8 +835,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="684">
+          <caret line="38" column="47" lean-forward="false" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
           <folding>
             <element signature="e#646#666#0" expanded="true" />
           </folding>
@@ -787,8 +845,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/include/davinci_calibrator/davinci_calibrator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="1116">
+          <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
           <folding>
             <element signature="e#59#79#0" expanded="true" />
           </folding>
@@ -798,15 +856,7 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+          <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
           <folding />
         </state>
       </provider>
@@ -814,23 +864,25 @@
     <entry file="file://$PROJECT_DIR$/package.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-286">
-          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
-          <folding />
+        <state relative-caret-position="1188">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding>
+            <element signature="e#1769#1789#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#646#666#0" expanded="true" />
           </folding>
@@ -839,23 +891,90 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/include/davinci_calibrator/davinci_calibrator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="62" column="82" selection-start-line="62" selection-start-column="82" selection-end-line="62" selection-end-column="82" />
+        <state relative-caret-position="306">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
             <element signature="e#59#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="35" lean-forward="false" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="185" column="0" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+        <state relative-caret-position="288">
+          <caret line="47" column="29" lean-forward="true" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
           <folding>
             <element signature="e#1769#1789#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/include/davinci_calibrator/davinci_calibrator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="61" column="36" lean-forward="true" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
+          <folding>
+            <element signature="e#59#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="88" column="9" lean-forward="true" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
+          <folding>
+            <element signature="e#646#666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

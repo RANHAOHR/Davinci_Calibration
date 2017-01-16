@@ -28,20 +28,6 @@
     std::vector<cv::Point3f> board_coordinates;  /////the  3d coordinates that pass to SolvePnP
     std::vector<cv::Mat> marker_poses;
 
- public:
- 	 /*
-     * This constructor uses an input charactor to set who it subscribes to
-     * It also then initializes the publisher.
-     */
-    DavinciCalibrator(ros::NodeHandle* nodehandle);
-
-    bool freshLeftCorner;
-    bool freshRightCorner;
-    bool boardMatch; ///only support 3 * 5 board
-
-    std::vector<cv::Point2f> left_corner_coordinates;
-    std::vector<cv::Point2f> right_corner_coordinates;
-
     ros::Subscriber leftcorner_size_subscriber;
     ros::Subscriber rightcorner_size_subscriber;
 
@@ -49,7 +35,6 @@
     ros::Subscriber rightcorner_subscriber;
 
     ros::Subscriber polaris_subscriber;
-    
 
     void leftCornerSizeCB(const std_msgs::Int32::ConstPtr& leftCornerSizeData);
     void rightCornerSizeCB(const std_msgs::Int32::ConstPtr& rightCornerSizeData);
@@ -59,6 +44,23 @@
 
     void polarisTargetsCB(const geometry_msgs::PoseArray::ConstPtr& target_poses);
 
+ public:
+ 	 /*
+     * This constructor uses an input charactor to set who it subscribes to
+     * It also then initializes the publisher.
+     */
+    DavinciCalibrator(ros::NodeHandle* nodehandle);
+
+    bool freshLeftCorner;
+    bool freshRightCorner;
+    bool boardMatch; ///only support 3 * 5 chessboard
+    bool freshMakers;
+
+    cv::Mat g_bm;
+    cv::Mat g_mm;
+
+    std::vector<cv::Point2f> left_corner_coordinates;
+    std::vector<cv::Point2f> right_corner_coordinates;
     /*  Not using this if we already have camera_info
     *   ros::Subscriber intrinsics_subscriber;
     *   void camIntrinsicCB(const camera_calibration::intrinsic_param& intrinsicsData);
@@ -67,6 +69,8 @@
     void setBoardCoord();
     void computeCameraPose(const std::vector<cv::Point2f> &corner_coords, const cv::Mat &cameraMatrix, cv::Mat &output_cam_pose );
     void convertQuaternionsToRvec( const cv::Mat &quaternion, cv::Mat &Rod_rvec );
+    void computeMakersGeometry( std::vector<cv::Mat> &markers, cv::Mat &outputGeometry);
+    void computeInv(const cv::Mat &inputMat, cv::Mat &outputMat);
 };
 
 #endif
