@@ -1,2 +1,0 @@
-set(camera_calibration_MESSAGE_FILES "/home/rxh349/ros_ws/src/Davinci_Calibration/camera_calibration/msg/points.msg;/home/rxh349/ros_ws/src/Davinci_Calibration/camera_calibration/msg/corners.msg;/home/rxh349/ros_ws/src/Davinci_Calibration/camera_calibration/msg/intrinsic_param.msg")
-set(camera_calibration_SERVICE_FILES "")
