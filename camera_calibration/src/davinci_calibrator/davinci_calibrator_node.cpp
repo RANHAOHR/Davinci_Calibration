@@ -77,8 +77,9 @@ int main(int argc, char **argv) {
 
                         if(calibrator.freshMakers){  //get fresh maker poses
                             //when get everything ready, compute G_CM
-                            G_CM_l = calibrator.g_mm * calibrator.g_bm * left_cam_pose;
-                            G_CM_r = calibrator.g_mm * calibrator.g_bm * right_cam_pose;
+                            G_CM_l = left_cam_pose * calibrator.g_bm * calibrator.g_mm;
+                            G_CM_r = right_cam_pose * calibrator.g_bm * calibrator.g_mm;
+                            ROS_INFO_STREAM("LEFT G_CM_l: " << G_CM_l );
 
                         }
 

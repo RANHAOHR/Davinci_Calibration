@@ -55,10 +55,10 @@ DavinciCalibrator::DavinciCalibrator(ros::NodeHandle* nodehandle) : nh_( *nodeha
     // marker_poses.resize(0);
     // board_coordinates.resize(0);  ////should resize this after receive the real corner size
 
-    g_bm = 	(cv::Mat_<double>(4,4) << 0, 1, 0, -100,   ///meters or millimeters
+    g_bm = 	(cv::Mat_<double>(4,4) << 0, 1, 0, -0.1,   ///meters or millimeters
             0, 0, 1, 0,
             1, 0, 0, 0,
-            0, 0,0, 1);
+            0, 0, 0, 1);
 
     g_mm = cv::Mat::eye(4,4,CV_64F);
 
@@ -280,7 +280,7 @@ void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> &corner
     distCoeffs.at<double>(3) = 0;
 
 	// ROS_INFO_STREAM("board_coordinates: " << board_coordinates);
-	ROS_INFO_STREAM("corner_coords: " << corner_coords);
+	// ROS_INFO_STREAM("corner_coords: " << corner_coords);
 
 	cv::solvePnP(board_coordinates, corner_coords, cameraMatrix, distCoeffs, cam_rvec, cam_tvec);
 
@@ -293,12 +293,13 @@ void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> &corner
 //	ROS_INFO_STREAM("Rodrigues: " << R);
 
 	/////get the inverse of R and T and put it in the output camera pose
-	R = R.t();  // rotation of inverse
-	cam_tvec = -R * cam_tvec; // translation of inverse
+	// R = R.t();  // rotation of inverse
+	// cam_tvec = -R * cam_tvec; // translation of inverse
 
     // cv::Mat world_pose = cv::Mat::eye(4,4,CV_64F);
 	R.copyTo(output_cam_pose.colRange(0,3).rowRange(0,3));
 	cam_tvec.copyTo(output_cam_pose.colRange(3,4).rowRange(0,3));
+
 
 }
 
@@ -329,8 +330,8 @@ void DavinciCalibrator::computeMakersGeometry( std::vector<cv::Mat> &markers, cv
         cv::Mat inv_marker_board = cv::Mat::eye(4,4,CV_64F);
         outputGeometry = cv::Mat::eye(4,4,CV_64F);
 
-        computeInv(markers[0], inv_marker_board);
-        outputGeometry =  markers[1] * inv_marker_board;
+        computeInv(markers[1], inv_marker_board);
+        outputGeometry =  inv_marker_board * markers[0];
 
     }
 
