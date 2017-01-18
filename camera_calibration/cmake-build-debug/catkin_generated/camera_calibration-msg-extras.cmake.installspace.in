@@ -1,0 +1,2 @@
+set(camera_calibration_MESSAGE_FILES "msg/points.msg;msg/corners.msg;msg/intrinsic_param.msg")
+set(camera_calibration_SERVICE_FILES "")

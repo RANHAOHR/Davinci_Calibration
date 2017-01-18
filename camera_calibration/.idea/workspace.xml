@@ -101,8 +101,8 @@
       <file leaf-file-name="davinci_calibrator.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="155" column="50" lean-forward="true" selection-start-line="155" selection-start-column="50" selection-end-line="155" selection-end-column="50" />
+            <state relative-caret-position="1783">
+              <caret line="307" column="52" lean-forward="false" selection-start-line="307" selection-start-column="52" selection-end-line="307" selection-end-column="52" />
               <folding>
                 <element signature="e#1769#1789#0" expanded="true" />
               </folding>
@@ -143,6 +143,13 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>g_mm</find>
+      <find>computeMakersGeometry</find>
+      <find>inputMat</find>
+    </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -774,12 +781,12 @@
       <workItem from="1484166517522" duration="652000" />
       <workItem from="1484237825827" duration="7444000" />
       <workItem from="1484589818778" duration="4877000" />
-      <workItem from="1484764549275" duration="318000" />
+      <workItem from="1484764549275" duration="2910000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13291000" />
+    <option name="totallyTimeSpent" value="15883000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -1000,8 +1007,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="155" column="50" lean-forward="true" selection-start-line="155" selection-start-column="50" selection-end-line="155" selection-end-column="50" />
+        <state relative-caret-position="1783">
+          <caret line="307" column="52" lean-forward="false" selection-start-line="307" selection-start-column="52" selection-end-line="307" selection-end-column="52" />
           <folding>
             <element signature="e#1769#1789#0" expanded="true" />
           </folding>

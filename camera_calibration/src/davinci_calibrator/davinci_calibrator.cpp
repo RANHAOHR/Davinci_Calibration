@@ -150,8 +150,8 @@ void DavinciCalibrator::setBoardCoord(){
 
     		boardMatch  = true;
 
-	        int row_size = 3;
-	        int col_size = 5;
+	        int row_size = 3;  //y
+	        int col_size = 5;  //x
 
 	        board_coordinates.resize(corner_size);
 	        /****set x and y for board****/
@@ -184,9 +184,7 @@ void DavinciCalibrator::setBoardCoord(){
     else{ 	
         ROS_ERROR("Cannot set the 3D coordinates correctly");
         boardMatch = false;
-            
     }
-
 }
 
 void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPtr& target_poses){
@@ -219,7 +217,6 @@ void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPt
             Ttvec.copyTo(marker_poses[i].colRange(3,4).rowRange(0,3));
 
             ROS_INFO_STREAM("marker poses: " << marker_poses[i]);
-
         }
 
         double marker_1 = marker_poses[0].at<double>(0,0);
@@ -227,7 +224,7 @@ void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPt
 
         if( ( marker_1 != marker_1 ) || ( marker_2 != marker_2 ) )  //if the marker poses are not NAN
         {
-        	ROS_ERROR("Polaris sensor gives NAN poses, please check the positions of markers and tracker! ");
+        	ROS_ERROR("Polaris sensor gives NAN poses, please check the positions of markers and tracker!");
         	freshMakers = false;
         }
         else{
@@ -291,10 +288,8 @@ void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> &corner
 	// R = R.t();  // rotation of inverse
 	// cam_tvec = -R * cam_tvec; // translation of inverse
 
-    // cv::Mat world_pose = cv::Mat::eye(4,4,CV_64F);
 	R.copyTo(output_cam_pose.colRange(0,3).rowRange(0,3));
 	cam_tvec.copyTo(output_cam_pose.colRange(3,4).rowRange(0,3));
-
 
 }
 
@@ -311,7 +306,6 @@ void DavinciCalibrator::computeInv(const cv::Mat &inputMat, cv::Mat &outputMat){
 
     R.copyTo(outputMat.colRange(0,3).rowRange(0,3));
     p.copyTo(outputMat.colRange(3,4).rowRange(0,3));
-
 
 }
 void DavinciCalibrator::computeMakersGeometry( std::vector<cv::Mat> &markers, cv::Mat &outputGeometry){
