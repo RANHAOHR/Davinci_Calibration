@@ -81,12 +81,14 @@ int main(int argc, char **argv) {
                             G_CM_r = right_cam_pose * calibrator.g_bm * calibrator.g_mm;
                             ROS_INFO_STREAM("LEFT G_CM_l: " << G_CM_l );
 
+                        }else{
+                            ROS_INFO(" No marker detected! ");
                         }
 
                     }
                 }
                 else{
-                    ROS_INFO(" Nothing received! ");
+                    ROS_INFO(" No corner information received! ");
                 }
                 
             }

@@ -216,7 +216,7 @@ void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPt
             Trot.copyTo(marker_poses[i].colRange(0,3).rowRange(0,3));
             Ttvec.copyTo(marker_poses[i].colRange(3,4).rowRange(0,3));
 
-            ROS_INFO_STREAM("marker poses: " << marker_poses[i]);
+            // ROS_INFO_STREAM("marker poses: " << marker_poses[i]);
         }
 
         double marker_1 = marker_poses[0].at<double>(0,0);
@@ -237,7 +237,7 @@ void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPt
     }
     else{
         ROS_INFO_STREAM("Non-expected number of target detected, " << target_size << " Targets");
-        freshMakers = false; //
+        freshMakers = false;
     }
 }
 
@@ -284,7 +284,7 @@ void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> &corner
 
 //	ROS_INFO_STREAM("Rodrigues: " << R);
 
-	/////get the inverse of R and T and put it in the output camera pose
+	/////get the inverse of R and T ,this will gives the camera pose relative to the checkerboard frame
 	// R = R.t();  // rotation of inverse
 	// cam_tvec = -R * cam_tvec; // translation of inverse
 
