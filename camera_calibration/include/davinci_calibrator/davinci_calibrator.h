@@ -17,9 +17,9 @@
 #include <geometry_msgs/PoseArray.h>
 #include <geometry_msgs/Pose.h>
 
- class DavinciCalibrator{
- private:
-    
+class DavinciCalibrator {
+private:
+
     ros::NodeHandle nh_;
 
     int lcorner_size;
@@ -36,20 +36,22 @@
 
     ros::Subscriber polaris_subscriber;
 
-    void leftCornerSizeCB(const std_msgs::Int32::ConstPtr& leftCornerSizeData);
-    void rightCornerSizeCB(const std_msgs::Int32::ConstPtr& rightCornerSizeData);
+    void leftCornerSizeCB(const std_msgs::Int32::ConstPtr &leftCornerSizeData);
 
-    void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr& leftcornerData);
-    void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr& rightcornerData);
+    void rightCornerSizeCB(const std_msgs::Int32::ConstPtr &rightCornerSizeData);
 
-    void polarisTargetsCB(const geometry_msgs::PoseArray::ConstPtr& target_poses);
+    void leftcornerCB(const std_msgs::Float32MultiArray::ConstPtr &leftcornerData);
 
- public:
- 	 /*
-     * This constructor uses an input charactor to set who it subscribes to
-     * It also then initializes the publisher.
-     */
-    DavinciCalibrator(ros::NodeHandle* nodehandle);
+    void rightcornerCB(const std_msgs::Float32MultiArray::ConstPtr &rightcornerData);
+
+    void polarisTargetsCB(const geometry_msgs::PoseArray::ConstPtr &target_poses);
+
+public:
+    /*
+   * This constructor uses an input charactor to set who it subscribes to
+   * It also then initializes the publisher.
+   */
+    DavinciCalibrator(ros::NodeHandle *nodehandle);
 
     bool freshLeftCorner;
     bool freshRightCorner;
@@ -61,15 +63,21 @@
 
     std::vector<cv::Point2f> left_corner_coordinates;
     std::vector<cv::Point2f> right_corner_coordinates;
+
     /*  Not using this if we already have camera_info
     *   ros::Subscriber intrinsics_subscriber;
     *   void camIntrinsicCB(const camera_calibration::intrinsic_param& intrinsicsData);
     */
 
     void setBoardCoord();
-    void computeCameraPose(const std::vector<cv::Point2f> &corner_coords, const cv::Mat &cameraMatrix, cv::Mat &output_cam_pose );
-    void convertQuaternionsToRvec( const cv::Mat &quaternion, cv::Mat &Rod_rvec );
-    void computeMakersGeometry( std::vector<cv::Mat> &markers, cv::Mat &outputGeometry);
+
+    void computeCameraPose(const std::vector<cv::Point2f> &corner_coords, const cv::Mat &cameraMatrix,
+                           cv::Mat &output_cam_pose);
+
+    void convertQuaternionsToRvec(const cv::Mat &quaternion, cv::Mat &Rod_rvec);
+
+    void computeMakersGeometry(std::vector<cv::Mat> &markers, cv::Mat &outputGeometry);
+
     void computeInv(const cv::Mat &inputMat, cv::Mat &outputMat);
 };
 

@@ -7,7 +7,7 @@
     	  a- Chessboard camera coordinates are in pixel, convert them into m or mm
     // 6- Get camera to calibration pattern transformation
     //    a- Call solvePnP with world coordinates and camera coordinates of chessboard
-    // 7- Get NDI tracker pose to communicate with the cammera_calibration node
+    // 7- Get NDI tracker pose to communicate with the camera_calibration node
 **************************/
 #include <ros/ros.h>
 #include <davinci_calibrator/davinci_calibrator.h>

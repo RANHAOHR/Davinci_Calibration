@@ -52,9 +52,6 @@ DavinciCalibrator::DavinciCalibrator(ros::NodeHandle* nodehandle) : nh_( *nodeha
 	left_corner_coordinates.resize(lcorner_size);  // initialization
 	right_corner_coordinates.resize(rcorner_size);
 
-    // marker_poses.resize(0);
-    // board_coordinates.resize(0);  ////should resize this after receive the real corner size
-
     g_bm = 	(cv::Mat_<double>(4,4) << 0, 1, 0, -0.1,   ///meters or millimeters
             0, 0, 1, 0,
             1, 0, 0, 0,
@@ -70,7 +67,6 @@ DavinciCalibrator::DavinciCalibrator(ros::NodeHandle* nodehandle) : nh_( *nodeha
 	// intrinsics_subscriber = nh_.subscribe("camera_intrinsics",1, &DavinciCalibrator::camIntrinsicCB, this);
 
 	polaris_subscriber = nh_.subscribe("/polaris_sensor/targets", 1, &DavinciCalibrator::polarisTargetsCB, this);
-
 }
 
 /***DEBUG if necessary, and for the computing of corner coordinates***/
@@ -78,15 +74,14 @@ void DavinciCalibrator::leftCornerSizeCB(const std_msgs::Int32::ConstPtr& leftCo
 
 	lcorner_size = leftCornerSizeData->data;   /////it's better not to change this value frequently
 
-	ROS_INFO_STREAM("SIZE of left corners: " << lcorner_size);
-
+//	ROS_INFO_STREAM("SIZE of left corners: " << lcorner_size);
 }
 
 void DavinciCalibrator::rightCornerSizeCB(const std_msgs::Int32::ConstPtr& rightCornerSizeData){
 
 	rcorner_size = rightCornerSizeData->data;   /////it's better not to change this value frequently
 
-	ROS_INFO_STREAM("SIZE of right corners: " << rcorner_size);
+//	ROS_INFO_STREAM("SIZE of right corners: " << rcorner_size);
 
 }
 
@@ -153,7 +148,7 @@ void DavinciCalibrator::setBoardCoord(){
 
     	if(corner_size == 15){  //TODO: hard coding since this depends on each chessboard: 3 * 5
 
-    		boardMatch  = true; //
+    		boardMatch  = true;
 
 	        int row_size = 3;
 	        int col_size = 5;
@@ -164,13 +159,13 @@ void DavinciCalibrator::setBoardCoord(){
 
 	            for (int i = col_size * j; i < col_size + col_size * j; ++i) {  ///col
 
-	                board_coordinates[i].y = 0.0 + j * 0.01;
+                    board_coordinates[i].y = 0.0 + j * 0.01;
 
 	                if(j>0){
 	                    board_coordinates[i].x = board_coordinates[i-col_size].x;
 	                }
 	                else{
-	                    board_coordinates[i].x = 0.01 * i; ///first row
+                        board_coordinates[i].x = 0.01 * i; ///first row
 	                }
 	            }
 	        }
@@ -230,7 +225,7 @@ void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPt
         double marker_1 = marker_poses[0].at<double>(0,0);
         double marker_2 = marker_poses[1].at<double>(0,0);
 
-        if( ( marker_1 != marker_1 ) && ( marker_2 != marker_2 ) )  //if the marker poses are not NAN
+        if( ( marker_1 != marker_1 ) || ( marker_2 != marker_2 ) )  //if the marker poses are not NAN
         {
         	ROS_ERROR("Polaris sensor gives NAN poses, please check the positions of markers and tracker! ");
         	freshMakers = false;
