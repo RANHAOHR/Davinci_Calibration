@@ -236,6 +236,7 @@ class CalibrationNode:
             dstride1 = left_mat.layout.dim[1].stride
             offset = left_mat.layout.data_offset
 
+            print("left")  # debug
             print(drawable.lcorner)  # debug
             i_l = 0
             for temp_left in drawable.lcorner:
@@ -244,8 +245,6 @@ class CalibrationNode:
                 left_mat.data[offset + i_l + dstride1*0] = temp_x
                 left_mat.data[offset + i_l + dstride1*1] = temp_y
                 i_l += 1
-                
-            # print(left_mat)
 
             self.left_pub.publish(left_mat)         
         else:
@@ -274,6 +273,7 @@ class CalibrationNode:
             dstride1 = right_mat.layout.dim[1].stride
             offset = right_mat.layout.data_offset
 
+            print("right")  # debug
             print(drawable.rcorner)   #debug
             i_r = 0
             for temp_right in drawable.rcorner:
@@ -282,8 +282,6 @@ class CalibrationNode:
                 right_mat.data[offset + i_r + dstride1*0] = temp_x
                 right_mat.data[offset + i_r + dstride1*1] = temp_y
                 i_r += 1
-                
-            # print(right_mat)
 
             self.right_pub.publish(right_mat)
                            

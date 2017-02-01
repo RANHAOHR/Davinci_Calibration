@@ -1,5 +1,5 @@
 <package>
-  <name>camera_calibration</name>
+  <name>davinci_calibration</name>
   <version>1.12.19</version>
   <description>
      camera_calibration allows easy calibration of monocular or stereo from ROS Camera Calibration
@@ -18,14 +18,19 @@
   <run_depend>std_srvs</run_depend>
   <run_depend>sensor_msgs</run_depend>
 
+  <build_depend>geometry_msgs</build_depend>
+  <run_depend>geometry_msgs</run_depend>
+
   <build_depend>std_msgs</build_depend>
   <run_depend>std_msgs</run_depend>
 
   <build_depend>message_generation</build_depend>
   <run_depend>message_runtime</run_depend>
 
+  <build_depend>cwru_opencv_common</build_depend>
+  <run_depend>cwru_opencv_common</run_depend>
+
   <license>BSD</license>
-  <url>http://www.ros.org/wiki/camera_calibration</url>
 
   <export>
     <rosdoc config="rosdoc.yaml" />

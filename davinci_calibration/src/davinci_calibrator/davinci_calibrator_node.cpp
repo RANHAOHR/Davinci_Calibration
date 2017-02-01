@@ -72,14 +72,23 @@ int main(int argc, char **argv) {
                         calibrator.computeCameraPose(calibrator.left_corner_coordinates, intrinsic_l, left_cam_pose);  ///get camera poses
                         calibrator.computeCameraPose(calibrator.right_corner_coordinates, intrinsic_r, right_cam_pose);
 
-                        ROS_INFO_STREAM("LEFT Camera Pose: " << left_cam_pose );
-                        ROS_INFO_STREAM("RIGHT Camera Pose: " << right_cam_pose );
+                        // ROS_INFO_STREAM("LEFT Camera Pose: " << left_cam_pose );
+                        // ROS_INFO_STREAM("RIGHT Camera Pose: " << right_cam_pose );
 
                         if(calibrator.freshMakers){  //get fresh maker poses
                             //when get everything ready, compute G_CM
+
+
+                            // ROS_INFO("Waiting to move the board!");
+                            // cv::waitKey();
+
                             G_CM_l = left_cam_pose * calibrator.g_bm * calibrator.g_mm;
                             G_CM_r = right_cam_pose * calibrator.g_bm * calibrator.g_mm;
                             ROS_INFO_STREAM("LEFT G_CM_l: " << G_CM_l );
+                            ROS_INFO_STREAM("LEFT G_CM_r: " << G_CM_r );
+
+                            /***testign using left camera now*/
+                            // calibrator.testCamToBoard(G_CM_l, calibrator.marker_poses, calibrator.g_bm, left_cam_pose);
 
                         }else{
                             ROS_INFO(" No marker detected! ");

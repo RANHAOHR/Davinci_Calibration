@@ -1,0 +1,31 @@
+<launch>
+  
+  <!-- Launch daVinci calibration -->
+  <include file="$(find davinci_launch)/launch/usb_stereo.launch"/>
+   <node name="davinci_endoscope" pkg="stereo_sync" type="stereo_sync_node" output="screen"/>
+   <group ns="davinci_endo">
+      <node name="davinci_stereo_proc" pkg="stereo_image_proc" type="stereo_image_proc"/>
+   </group>
+
+   <!-- Launch cameracalibration view  -->
+   <node name="camera_calibration" pkg="camera_calibration" type="cameracalibrator.py" output="screen" >
+
+        <param name="--size" type="string" value="3x5"/>
+        <param name="--square" type="double" value="0.01"/>
+
+         <remap from="right" to="/davinci_endo/right/image_raw" />
+         <remap from="left" to="/davinci_endo/left/image_raw" />
+         <remap from="right_camera" to="/davinci_endo/unsynced/right" />
+         <remap from="left_camera" to="/davinci_endo/unsynced/left" />
+
+  </node>
+
+   <node name="polaris_sensor" pkg="polaris_sensor" type="polaris_sensor_node" >
+
+        <param name="port" type="string" value="/dev/ttyUSB0"/>
+        <param name="roms" type="string" value="$(find polaris_sensor)/rom/8700339.rom, $(find polaris_sensor)/rom/CheckerBoard.rom"/>
+
+  </node>
+
+
+</launch>

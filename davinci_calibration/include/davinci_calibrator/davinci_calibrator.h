@@ -7,7 +7,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include "opencv/cv.hpp"
-#include <camera_calibration/intrinsic_param.h>
+#include <davinci_calibration/intrinsic_param.h>
 
 #include <sensor_msgs/image_encodings.h>
 #include <image_transport/image_transport.h>
@@ -26,7 +26,7 @@ private:
     int rcorner_size;
 
     std::vector<cv::Point3f> board_coordinates;  /////the  3d coordinates that pass to SolvePnP
-    std::vector<cv::Mat> marker_poses;
+
 
     ros::Subscriber leftcorner_size_subscriber;
     ros::Subscriber rightcorner_size_subscriber;
@@ -53,6 +53,8 @@ public:
    */
     DavinciCalibrator(ros::NodeHandle *nodehandle);
 
+    std::vector<cv::Mat> marker_poses;
+    
     bool freshLeftCorner;
     bool freshRightCorner;
     bool boardMatch; ///only support 3 * 5 chessboard
@@ -76,9 +78,11 @@ public:
 
     void convertQuaternionsToRvec(const cv::Mat &quaternion, cv::Mat &Rod_rvec);
 
-    void computeMakersGeometry(std::vector<cv::Mat> &markers, cv::Mat &outputGeometry);
+    void computeMakersGeometry(const std::vector<cv::Mat> &markers, cv::Mat &outputGeometry);
 
     void computeInv(const cv::Mat &inputMat, cv::Mat &outputMat);
+
+    void testCamToBoard(const cv::Mat &G_CT2, const std::vector<cv::Mat> &markers, const cv::Mat &g_BM, const cv::Mat &solvePnpCamBoard );
 };
 
 #endif
