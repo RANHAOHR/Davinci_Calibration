@@ -134,12 +134,6 @@ void DavinciCalibrator::rightcornerCB(const std_msgs::Float32MultiArray::ConstPt
 
 }
 
-/*  Not using this if we already have camera_info
- *  void DavinciCalibrator::camIntrinsicCB(const camera_calibration::intrinsic_param& intrinsicsData){
-
- *  }
-*/
-
 void DavinciCalibrator::setBoardCoord(){
 
     if (lcorner_size != 0 &&  lcorner_size == rcorner_size)  ///make sure received corners from both cameras
@@ -173,7 +167,7 @@ void DavinciCalibrator::setBoardCoord(){
 
 	        /*** set z coordinates for board***/
 	        for (int k = 0; k < corner_size ; ++k) {
-	            board_coordinates[k].z = 0.0;
+	            board_coordinates[k].z = 0.0;  //TODO:
 	        }
     	}
     	else{
@@ -217,7 +211,7 @@ void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPt
             Trot.copyTo(marker_poses[i].colRange(0,3).rowRange(0,3));
             Ttvec.copyTo(marker_poses[i].colRange(3,4).rowRange(0,3));
 
-            // ROS_INFO_STREAM("marker poses " << i << "is:" << marker_poses[i]);
+            ROS_INFO_STREAM("marker poses " << i << "is:" << marker_poses[i]);
         }
 
         double marker_1 = marker_poses[0].at<double>(0,0);
@@ -273,8 +267,8 @@ void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> &corner
     distCoeffs.at<double>(2) = 0;
     distCoeffs.at<double>(3) = 0;
 
-	// ROS_INFO_STREAM("board_coordinates: " << board_coordinates);
- //    ROS_INFO_STREAM("corner_coords: " << corner_coords);
+	ROS_INFO_STREAM("board_coordinates: " << board_coordinates);
+    ROS_INFO_STREAM("corner_coords: " << corner_coords);
 
 	cv::solvePnP(board_coordinates, corner_coords, cameraMatrix, distCoeffs, cam_rvec, cam_tvec);
 
