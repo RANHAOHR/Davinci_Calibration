@@ -7,10 +7,11 @@
       <node name="davinci_stereo_proc" pkg="stereo_image_proc" type="stereo_image_proc"/>
    </group>
 	
+   <!-- Launch polaris sensor ros package --> 
    <node name="polaris_sensor" pkg="polaris_sensor" type="polaris_sensor_node" >
 
         <param name="port" type="string" value="/dev/ttyUSB0"/>
-        <param name="roms" type="string" value="$(find polaris_sensor)/rom/8700339.rom, $(find polaris_sensor)/rom/8700338.rom"/>
+        <param name="roms" type="string" value="$(find polaris_sensor)/rom/8700339.rom, $(find polaris_sensor)/rom/CheckerBoard.rom"/>
 
   </node> 
 
@@ -27,5 +28,12 @@
 
   </node>
 
+  <!-- Launch rosbag for recording, if necessary
+  <arg name ="file_name" default="polaris_sensor.bag"/>
+  <arg name ="dest_path" default="/home/rxh349/ros_ws/src/Davinci_Calibration/davinci_calibration"/>	
+  <arg name ="polaris_topic" default="/polaris_sensor/targets"/>
+  <node name ="recorder" pkg="rosbag" type="record" output="screen" args="-O $(arg dest_path)/$(arg file_name) $(arg polaris_topic)">
+  </node>
+	--> 
 
 </launch>
