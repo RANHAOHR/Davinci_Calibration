@@ -57,7 +57,7 @@ public:
     
     bool freshLeftCorner;
     bool freshRightCorner;
-    bool boardMatch; ///only support 3 * 5 chessboard
+    bool boardMatch; ///TODO: CURRENTLY support 5 * 7 chessboard
     bool freshMakers;
 
     cv::Mat g_bm;
@@ -77,12 +77,16 @@ public:
                            cv::Mat &output_cam_pose);
 
     void convertQuaternionsToRvec(const cv::Mat &quaternion, cv::Mat &Rod_rvec);
+    // void convertQuaternionsToRot( const cv::Mat &quaternion, cv::Mat &rot_matrix);
 
     void computeMakersGeometry(const std::vector<cv::Mat> &markers, cv::Mat &outputGeometry);
 
     void computeInv(const cv::Mat &inputMat, cv::Mat &outputMat);
 
+    /* couple testing functions*/
     void testCamToBoard(const cv::Mat &G_CT2, const std::vector<cv::Mat> &markers, const cv::Mat &g_BM, const cv::Mat &solvePnpCamBoard );
+    void testCamToBoard2(const std::vector<cv::Mat> &markers, const cv::Mat &g_BM);
+    void testCamToBoard3();
 };
 
 #endif

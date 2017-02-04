@@ -41,6 +41,14 @@ int main(int argc, char **argv) {
 
     bool freshCameraInfo = false;
 
+    cv::Mat camera_matrix_l = (cv::Mat_<float>(3,3) << 764.0635671930186, 0, 344.710190632238,
+            0, 760.4650393204188, 284.5192831458843,
+            0, 0, 1);
+
+    cv::Mat camera_matrix_r = (cv::Mat_<float>(3,3) << 755.7644364668356, 0, 287.1735406571376,
+            0, 756.1752058068007, 254.5592709895131,
+            0, 0, 1);
+
     while(nh.ok()){
 
         ros::spinOnce();
@@ -52,6 +60,9 @@ int main(int argc, char **argv) {
             P_l = cameraInfoObj.getLeftProjectionMatrix();
             P_r = cameraInfoObj.getRightProjectionMatrix();
 
+            ROS_INFO_STREAM("projection mat left: " << P_l);
+            ROS_INFO_STREAM("projection mat right: " << P_r);
+
             if(P_l.at<double>(0,0) != 0 && P_r.at<double>(0,0))
             {
                 // ROS_INFO("obtained camera info");
@@ -60,8 +71,6 @@ int main(int argc, char **argv) {
                 cv::Mat intrinsic_l = P_l.colRange(0,3).rowRange(0,3);    ///peel off the intirnsic matrix from projection matrix 
                 cv::Mat intrinsic_r = P_r.colRange(0,3).rowRange(0,3);
 
-                // ROS_INFO_STREAM("Camera matrix left: " << intrinsic_l);
-                // ROS_INFO_STREAM("Camera matrix right: " << intrinsic_r);
 
                 if (calibrator.freshLeftCorner && calibrator.freshRightCorner )
                 {
@@ -72,23 +81,26 @@ int main(int argc, char **argv) {
                         calibrator.computeCameraPose(calibrator.left_corner_coordinates, intrinsic_l, left_cam_pose);  ///get camera poses
                         calibrator.computeCameraPose(calibrator.right_corner_coordinates, intrinsic_r, right_cam_pose);
 
-                        // ROS_INFO_STREAM("LEFT Camera Pose: " << left_cam_pose );
-                        // ROS_INFO_STREAM("RIGHT Camera Pose: " << right_cam_pose );
+                        ROS_INFO_STREAM("LEFT Camera Pose: " << left_cam_pose );
+                        ROS_INFO_STREAM("RIGHT Camera Pose: " << right_cam_pose );
 
                         if(calibrator.freshMakers){  //get fresh maker poses
                             //when get everything ready, compute G_CM
-
-
-                            // ROS_INFO("Waiting to move the board!");
-                            // cv::waitKey();
 
                             G_CM_l = left_cam_pose * calibrator.g_bm * calibrator.g_mm;
                             G_CM_r = right_cam_pose * calibrator.g_bm * calibrator.g_mm;
                             ROS_INFO_STREAM("LEFT G_CM_l: " << G_CM_l );
                             ROS_INFO_STREAM("LEFT G_CM_r: " << G_CM_r );
 
-                            /***testign using left camera now*/
+                            cv::Mat diffmat = G_CM_l - G_CM_r;
+
+                            ROS_INFO_STREAM("difference mat for l and r: " << diffmat);
+                            /***testing using left camera now*/
                             // calibrator.testCamToBoard(G_CM_l, calibrator.marker_poses, calibrator.g_bm, left_cam_pose);
+
+                            // calibrator.testCamToBoard2(calibrator.marker_poses, calibrator.g_bm);
+
+
 
                         }else{
                             ROS_INFO(" No marker detected! ");

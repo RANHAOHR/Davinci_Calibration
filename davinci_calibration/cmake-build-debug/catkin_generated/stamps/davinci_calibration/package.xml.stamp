@@ -1,0 +1,39 @@
+<package>
+  <name>davinci_calibration</name>
+  <version>1.12.19</version>
+  <description>
+     camera_calibration allows easy calibration of monocular or stereo from ROS Camera Calibration
+     For the calibation of Davinci robot
+  </description>
+  <maintainer email="rxh349@case.edu">Ran Hao</maintainer>
+
+  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
+
+  <test_depend>rostest</test_depend>
+
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>image_geometry</run_depend>
+  <run_depend>message_filters</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_srvs</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+
+  <build_depend>geometry_msgs</build_depend>
+  <run_depend>geometry_msgs</run_depend>
+
+  <build_depend>std_msgs</build_depend>
+  <run_depend>std_msgs</run_depend>
+
+  <build_depend>message_generation</build_depend>
+  <run_depend>message_runtime</run_depend>
+
+  <build_depend>cwru_opencv_common</build_depend>
+  <run_depend>cwru_opencv_common</run_depend>
+
+  <license>BSD</license>
+
+  <export>
+    <rosdoc config="rosdoc.yaml" />
+    <architecture_independent/>
+  </export>
+</package>
