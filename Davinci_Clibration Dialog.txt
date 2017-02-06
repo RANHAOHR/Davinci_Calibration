@@ -1,6 +1,5 @@
 # Davinci_Clibration Dialog:
 
-
 ############### using camera intrinsic matrix or projection matrix for the OpenCV::solvePnP:
 1. Using Camera intrinsic matrix:
 

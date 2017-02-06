@@ -1,0 +1,6 @@
+set(davinci_calibration_SETUP_PY_VERSION "1.12.19")
+set(davinci_calibration_SETUP_PY_SCRIPTS "")
+set(davinci_calibration_SETUP_PY_PACKAGES "camera_calibration")
+set(davinci_calibration_SETUP_PY_PACKAGE_DIRS "src/camera_calibration")
+set(davinci_calibration_SETUP_PY_MODULES "")
+set(davinci_calibration_SETUP_PY_MODULE_DIRS "")
