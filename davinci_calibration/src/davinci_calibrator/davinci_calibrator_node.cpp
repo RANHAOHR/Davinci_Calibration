@@ -78,8 +78,8 @@ int main(int argc, char **argv) {
                     
                     if (calibrator.boardMatch) //when get the board corners match the 3d board set up
                     {
-                        calibrator.computeCameraPose(calibrator.left_corner_coordinates, intrinsic_l, left_cam_pose);  ///get camera poses
-                        calibrator.computeCameraPose(calibrator.right_corner_coordinates, intrinsic_r, right_cam_pose);
+                        calibrator.computeCameraPose(calibrator.left_corner_coordinates, camera_matrix_l, left_cam_pose);  ///get camera poses
+                        calibrator.computeCameraPose(calibrator.right_corner_coordinates, camera_matrix_r, right_cam_pose);
 
                         ROS_INFO_STREAM("LEFT Camera Pose: " << left_cam_pose );
                         ROS_INFO_STREAM("RIGHT Camera Pose: " << right_cam_pose );

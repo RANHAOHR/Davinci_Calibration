@@ -2,7 +2,7 @@
 
 # This package is for daVinci Robot systems calibration
 
-# Using Camera_calibration and NDI Polaris Sensor
+# Using Camera_calibration and NDI Polaris Sensor, requires the calibrated camera
  
 To run davinci_launch(/cwru_davinci/davinci_launch)
 
