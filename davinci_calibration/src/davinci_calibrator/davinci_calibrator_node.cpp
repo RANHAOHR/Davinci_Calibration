@@ -4,7 +4,7 @@
     // 3- Frame from calibration pattern to tool 
     // 4- Define calibration pattern corners (world coordinates) 
     // 5- Subscribe to calibration node to get coordinates of chessboard corners
-    	  a- Chessboard camera coordinates are in pixel, convert them into m or mm
+    	  a- Chessboard camera coordinates are in pixel, convert them into m
     // 6- Get camera to calibration pattern transformation
     //    a- Call solvePnP with world coordinates and camera coordinates of chessboard
     // 7- Get NDI tracker pose to communicate with the camera_calibration node
@@ -90,7 +90,7 @@ int main(int argc, char **argv) {
                             G_CM_l = left_cam_pose * calibrator.g_bm * calibrator.g_mm;
                             G_CM_r = right_cam_pose * calibrator.g_bm * calibrator.g_mm;
                             ROS_INFO_STREAM("LEFT G_CM_l: " << G_CM_l );
-                            ROS_INFO_STREAM("LEFT G_CM_r: " << G_CM_r );
+                            ROS_INFO_STREAM("RIGHT G_CM_r: " << G_CM_r );
 
                             cv::Mat diffmat = G_CM_l - G_CM_r;
 
@@ -99,7 +99,6 @@ int main(int argc, char **argv) {
                             // calibrator.testCamToBoard(G_CM_l, calibrator.marker_poses, calibrator.g_bm, left_cam_pose);
 
                             // calibrator.testCamToBoard2(calibrator.marker_poses, calibrator.g_bm);
-
 
 
                         }else{
