@@ -59,9 +59,10 @@ int main(int argc, char **argv) {
             //retrive camera info
             P_l = cameraInfoObj.getLeftProjectionMatrix();
             P_r = cameraInfoObj.getRightProjectionMatrix();
+            
 
-            ROS_INFO_STREAM("projection mat left: " << P_l);
-            ROS_INFO_STREAM("projection mat right: " << P_r);
+//             ROS_INFO_STREAM("projection mat left: " << P_l);
+//             ROS_INFO_STREAM("projection mat right: " << P_r);
 
             if(P_l.at<double>(0,0) != 0 && P_r.at<double>(0,0))
             {
@@ -71,7 +72,7 @@ int main(int argc, char **argv) {
                 cv::Mat intrinsic_l = P_l.colRange(0,3).rowRange(0,3);    ///peel off the intirnsic matrix from projection matrix 
                 cv::Mat intrinsic_r = P_r.colRange(0,3).rowRange(0,3);
 
-
+                calibrator.freshRightCorner = true;
                 if (calibrator.freshLeftCorner && calibrator.freshRightCorner )
                 {
                     calibrator.setBoardCoord();  ///set the 3d coordinates for the chessboard or circle board
@@ -79,24 +80,37 @@ int main(int argc, char **argv) {
                     if (calibrator.boardMatch) //when get the board corners match the 3d board set up
                     {
                         calibrator.computeCameraPose(calibrator.left_corner_coordinates, camera_matrix_l, left_cam_pose);  ///get camera poses
-                        calibrator.computeCameraPose(calibrator.right_corner_coordinates, camera_matrix_r, right_cam_pose);
+                        //calibrator.computeCameraPose(calibrator.right_corner_coordinates, intrinsic_r, right_cam_pose);
+                            ROS_INFO_STREAM("Left camera pose: " << left_cam_pose );
 
-                        ROS_INFO_STREAM("LEFT Camera Pose: " << left_cam_pose );
-                        ROS_INFO_STREAM("RIGHT Camera Pose: " << right_cam_pose );
+                        //ROS_INFO_STREAM("RIGHT Camera Pose: " << right_cam_pose );
 
                         if(calibrator.freshMakers){  //get fresh maker poses
                             //when get everything ready, compute G_CM
 
+                            cv::Mat g_cm = left_cam_pose * calibrator.g_bm;
+
+//                            ROS_INFO_STREAM("LEFT g_cm: " << g_cm );
+//                            cv::Mat g_cm_inv = g_cm.inv();
+//                            ROS_INFO_STREAM("LEFT g_cm_inv: " << g_cm_inv );
+
+//                            cv::Mat rot_1 = (cv::Mat_<double>(3,3) << 1,0,0,0,1,0,0,0,1);
+//                            cv::Mat rot_3 = (cv::Mat_<double>(3,3) << 0,0,-1,0,1,0,1,0,0);
+//
+//                            rot_1.copyTo(left_cam_pose.colRange(0,3).rowRange(0,3));
+//                            rot_3.copyTo(calibrator.g_mm.colRange(0,3).rowRange(0,3));
+
+
+
                             G_CM_l = left_cam_pose * calibrator.g_bm * calibrator.g_mm;
-                            G_CM_r = right_cam_pose * calibrator.g_bm * calibrator.g_mm;
-                            ROS_INFO_STREAM("LEFT G_CM_l: " << G_CM_l );
-                            ROS_INFO_STREAM("RIGHT G_CM_r: " << G_CM_r );
 
-                            cv::Mat diffmat = G_CM_l - G_CM_r;
+                            //G_CM_r = right_cam_pose * calibrator.g_bm * calibrator.g_mm;
+                             ROS_INFO_STREAM("LEFT G_CM_l: " << G_CM_l );
+//                             ROS_INFO_STREAM("RIGHT G_CM_r: " << G_CM_r );
 
-                            ROS_INFO_STREAM("difference mat for l and r: " << diffmat);
+//                            // ROS_INFO_STREAM("difference mat for l and r: " << diffmat);
                             /***testing using left camera now*/
-                            // calibrator.testCamToBoard(G_CM_l, calibrator.marker_poses, calibrator.g_bm, left_cam_pose);
+                            calibrator.testCamToBoard(G_CM_l, calibrator.marker_poses, calibrator.g_bm, left_cam_pose);
 
                             // calibrator.testCamToBoard2(calibrator.marker_poses, calibrator.g_bm);
 
@@ -116,7 +130,7 @@ int main(int argc, char **argv) {
         }
 
         calibrator.freshLeftCorner = false;
-        calibrator.freshRightCorner = false;
+        //calibrator.freshRightCorner = false;
         calibrator.boardMatch = false;
         calibrator.freshMakers = false;
 

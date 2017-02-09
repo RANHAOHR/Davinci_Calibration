@@ -77,7 +77,7 @@ public:
                            cv::Mat &output_cam_pose);
 
     void convertQuaternionsToRvec(const cv::Mat &quaternion, cv::Mat &Rod_rvec);
-    // void convertQuaternionsToRot( const cv::Mat &quaternion, cv::Mat &rot_matrix);
+    void convertQuaternionsToRot( const cv::Mat &quaternion, cv::Mat &rot_matrix);
 
     void computeMakersGeometry(const std::vector<cv::Mat> &markers, cv::Mat &outputGeometry);
 

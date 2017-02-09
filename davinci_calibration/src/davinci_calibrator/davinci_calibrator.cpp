@@ -64,7 +64,6 @@ DavinciCalibrator::DavinciCalibrator(ros::NodeHandle* nodehandle) : nh_( *nodeha
 
 	leftcorner_subscriber = nh_.subscribe("/left_corners", 1, &DavinciCalibrator::leftcornerCB, this);
 	rightcorner_subscriber = nh_.subscribe("/right_corners", 1, &DavinciCalibrator::rightcornerCB, this);
-	// intrinsics_subscriber = nh_.subscribe("camera_intrinsics",1, &DavinciCalibrator::camIntrinsicCB, this);
 
 	polaris_subscriber = nh_.subscribe("/polaris_sensor/targets", 1, &DavinciCalibrator::polarisTargetsCB, this);
 }
@@ -136,7 +135,7 @@ void DavinciCalibrator::rightcornerCB(const std_msgs::Float32MultiArray::ConstPt
 
 void DavinciCalibrator::setBoardCoord(){
 
-    if (lcorner_size != 0 &&  lcorner_size == rcorner_size)  ///make sure received corners from both cameras
+    if (lcorner_size != 0 /*&&  lcorner_size == rcorner_size*/)  ///make sure received corners from both cameras
     {
     	int corner_size = lcorner_size;
 
@@ -225,7 +224,7 @@ void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPt
         else{
 
         	computeMakersGeometry( marker_poses, g_mm);
-			ROS_INFO_STREAM("The transformation between two markers: " << g_mm);
+            ROS_INFO_STREAM("The transformation between two markers: " << g_mm);
 			freshMakers = true;
         }
 
@@ -254,24 +253,24 @@ void DavinciCalibrator::convertQuaternionsToRvec( const cv::Mat &quaternion, cv:
 
 }
 
-//void DavinciCalibrator::convertQuaternionsToRot( const cv::Mat &quaternion, cv::Mat &rot_matrix ){
-//
-//    double qx = quaternion.at<double>(0,0);
-//    double qy = quaternion.at<double>(1,0);
-//    double qz = quaternion.at<double>(2,0);
-//    double qw = quaternion.at<double>(3,0);
-//
-//    const double Norm = 1.0f/sqrt(qx*qx + qy*qy + qz*qz + qw*qw);
-//    qx *= Norm;
-//    qy *= Norm;
-//    qz *= Norm;
-//    qw *= Norm;
-//
-//    rot_matrix = (cv::Mat_<double>(3,3) << 1.0 - 2.0*qy*qy - 2.0f*qz*qz, 2.0f*qx*qy - 2.0f*qz*qw, 2.0f*qx*qz + 2.0f*qy*qw,
-//            2.0f*qx*qy + 2.0f*qz*qw, 1.0f - 2.0f*qx*qx - 2.0f*qz*qz, 2.0f*qy*qz - 2.0f*qx*qw,
-//            2.0f*qx*qz - 2.0f*qy*qw, 2.0f*qy*qz + 2.0f*qx*qw, 1.0f - 2.0f*qx*qx - 2.0f*qy*qy);
-//
-//}
+void DavinciCalibrator::convertQuaternionsToRot( const cv::Mat &quaternion, cv::Mat &rot_matrix ){
+
+    double qx = quaternion.at<double>(0,0);
+    double qy = quaternion.at<double>(1,0);
+    double qz = quaternion.at<double>(2,0);
+    double qw = quaternion.at<double>(3,0);
+
+    const double Norm = 1.0f/sqrt(qx*qx + qy*qy + qz*qz + qw*qw);
+    qx *= Norm;
+    qy *= Norm;
+    qz *= Norm;
+    qw *= Norm;
+
+    rot_matrix = (cv::Mat_<double>(3,3) << 1.0 - 2.0*qy*qy - 2.0f*qz*qz, 2.0f*qx*qy - 2.0f*qz*qw, 2.0f*qx*qz + 2.0f*qy*qw,
+            2.0f*qx*qy + 2.0f*qz*qw, 1.0f - 2.0f*qx*qx - 2.0f*qz*qz, 2.0f*qy*qz - 2.0f*qx*qw,
+            2.0f*qx*qz - 2.0f*qy*qw, 2.0f*qy*qz + 2.0f*qx*qw, 1.0f - 2.0f*qx*qx - 2.0f*qy*qy);
+
+}
 
 void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> &corner_coords, const cv::Mat &cameraMatrix, cv::Mat &output_cam_pose){
 
@@ -285,6 +284,25 @@ void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> &corner
     distCoeffs.at<double>(1) = 0;
     distCoeffs.at<double>(2) = 0;
     distCoeffs.at<double>(3) = 0;
+
+    /*testing*/
+//    cv::Mat test_mat =(cv::Mat_<double>(4,4) << 1, 1, 1, 0,
+//            0, 3, 1, 2,
+//            2, 3, 1, 0,
+//            1, 0, 2, 1);
+//
+//    cv::Mat invMat;
+//    cv::Mat inVVMat;
+//
+//    computeInv(test_mat, invMat);
+//    inVVMat = test_mat.inv();
+//
+//    ROS_INFO_STREAM("invMat:" << invMat);
+//    ROS_INFO_STREAM("inVVMat:" << inVVMat);
+//
+//
+//    cv::Mat newMat = test_mat * inVVMat;
+//    ROS_INFO_STREAM("newMat:" << newMat);
 
 //	ROS_INFO_STREAM("board_coordinates: " << board_coordinates);
 //    ROS_INFO_STREAM("corner_coords: " << corner_coords);
@@ -301,7 +319,7 @@ void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> &corner
 
     cv::Mat world_frame = cv::Mat::eye(4,4, CV_32FC1);
 
-    computeInv(output_cam_pose, world_frame );
+    world_frame = output_cam_pose.inv();
     ROS_INFO_STREAM("world_frame " << world_frame);
 
 //testing
@@ -354,19 +372,8 @@ void DavinciCalibrator::computeMakersGeometry( const std::vector<cv::Mat> &marke
         outputGeometry = cv::Mat::eye(4,4,CV_64F);
 
         // ROS_INFO_STREAM("marker1 :" << markers[1]);
-        computeInv(markers[1], inv_marker_board);
-        // ROS_INFO_STREAM("marker1 :" << markers[1]);
-        // ROS_INFO_STREAM("marker1 inv:" << inv_marker_board);
-
-        /*testing*/
-        // cv::Mat test_mat =(cv::Mat_<double>(4,4) << 0, -1, 0, 1,  
-        //     0, 0, 1, 0,
-        //     -1, 0, 0, 0,
-        //     0, 0, 0, 1);
-
-        // cv::Mat invMat;
-        // computeInv(test_mat, invMat);
-        // ROS_INFO_STREAM("invMat:" << invMat);
+        // computeInv(markers[1], inv_marker_board);
+        inv_marker_board = markers[1].inv();
 
         // ROS_INFO_STREAM("marker2 :" << markers[0]);
         outputGeometry =  inv_marker_board * markers[0];
@@ -379,14 +386,15 @@ void DavinciCalibrator::computeMakersGeometry( const std::vector<cv::Mat> &marke
 void DavinciCalibrator::testCamToBoard(const cv::Mat &G_CT2, const std::vector<cv::Mat> &markers, const cv::Mat &g_BM, const cv::Mat &solvePnpCamBoard ){
 
     ROS_INFO_STREAM("THE solvePnpCamBoard is : " << solvePnpCamBoard);
+    ROS_INFO_STREAM("THE G_CT2 is : " << G_CT2);
 
     cv::Mat g_CB = cv::Mat::eye(4, 4, CV_32FC1);
 
     cv::Mat g_T2P;
     cv::Mat g_T1B;
 
-    computeInv(markers[0], g_T2P);
-    computeInv(g_BM, g_T1B);
+    g_T2P = markers[0].inv();
+    g_T1B = g_BM.inv();
 
     g_CB = G_CT2 * g_T2P * markers[1] * g_T1B;
 
@@ -397,6 +405,13 @@ void DavinciCalibrator::testCamToBoard(const cv::Mat &G_CT2, const std::vector<c
 
     ROS_INFO_STREAM("THE diffMat is : " << diffMat);
 
+
+    cv::Mat g_T2T1 = markers[0].inv() * markers[1];
+
+    cv::Mat g_T2C = g_T2T1 * g_T1B * g_CB.inv();
+    ROS_INFO_STREAM("g_T2C" << g_T2C);
+
+
 }
 
 void DavinciCalibrator::testCamToBoard2(const std::vector<cv::Mat> &markers, const cv::Mat &g_BM){
@@ -404,7 +419,7 @@ void DavinciCalibrator::testCamToBoard2(const std::vector<cv::Mat> &markers, con
     cv::Mat g_PT1 = markers[1];
 
     cv::Mat g_T1B;
-    computeInv(g_BM, g_T1B);
+    g_T1B = g_BM.inv();
 
     cv::Mat G_PB = g_PT1 * g_T1B;
 
@@ -433,14 +448,15 @@ void DavinciCalibrator::testCamToBoard3(){
     0, 0, 0, 1);
 
     cv::Mat G_PB_INV = cv::Mat::eye(4,4,CV_32FC1);
-    computeInv(G_PB, G_PB_INV );
+
+    G_PB_INV = G_PB.inv();
 
     cv::Mat G_PBB = G_PB_INV * G_PB_;
 
     ROS_INFO_STREAM("G_PBB: " << G_PBB );
 
     cv::Mat G_CB_INV = cv::Mat::eye(4,4,CV_32FC1);
-    computeInv(G_CB, G_CB_INV );
+    G_CB_INV = G_CB.inv();
 
     cv::Mat G_CBB = G_CB_INV * G_CB_;
 
