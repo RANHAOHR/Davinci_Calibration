@@ -19,6 +19,7 @@
       <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_eus" />
       <config projectName="camera_calibration" targetName="gtest_main" />
       <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_eus" />
+      <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_lisp" />
       <config projectName="davinci_calibration" targetName="_davinci_calibration_generate_messages_check_deps_corners" />
       <config projectName="camera_calibration" targetName="camera_calibration_gencpp" />
       <config projectName="davinci_calibration" targetName="davinci_calibration_generate_messages_cpp" />
@@ -28,7 +29,6 @@
       <config projectName="camera_calibration" targetName="doxygen" />
       <config projectName="camera_calibration" targetName="_camera_calibration_generate_messages_check_deps_corners" />
       <config projectName="davinci_calibration" targetName="davinci_calibration_generate_messages_py" />
-      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_eus" />
       <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_cpp" />
       <config projectName="camera_calibration" targetName="std_msgs_generate_messages_eus" />
       <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_py" />
@@ -43,7 +43,7 @@
       <config projectName="camera_calibration" targetName="_camera_calibration_generate_messages_check_deps_intrinsic_param" />
       <config projectName="camera_calibration" targetName="camera_calibration_generate_messages" />
       <config projectName="camera_calibration" targetName="std_msgs_generate_messages_lisp" />
-      <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_lisp" />
+      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_eus" />
       <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_py" />
       <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_py" />
       <config projectName="camera_calibration" targetName="download_extra_data" />
@@ -98,21 +98,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="davinci_calibrator_node.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="davinci_calibrator_node.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="81" column="99" lean-forward="false" selection-start-line="81" selection-start-column="99" selection-end-line="81" selection-end-column="99" />
+            <state relative-caret-position="757">
+              <caret line="84" column="73" lean-forward="true" selection-start-line="84" selection-start-column="73" selection-end-line="84" selection-end-column="73" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="davinci_calibrator.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="davinci_calibrator.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="444" column="28" lean-forward="false" selection-start-line="444" selection-start-column="28" selection-end-line="444" selection-end-column="28" />
+            <state relative-caret-position="288">
+              <caret line="421" column="87" lean-forward="false" selection-start-line="421" selection-start-column="87" selection-end-line="421" selection-end-column="87" />
               <folding>
                 <element signature="e#1769#1789#0" expanded="true" />
               </folding>
@@ -123,8 +123,8 @@
       <file leaf-file-name="davinci_calibrator.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/include/davinci_calibrator/davinci_calibrator.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1422">
-              <caret line="79" column="4" lean-forward="false" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
+            <state relative-caret-position="612">
+              <caret line="73" column="24" lean-forward="false" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="24" />
               <folding>
                 <element signature="e#59#79#0" expanded="true" />
               </folding>
@@ -157,11 +157,13 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>inputMat</find>
-      <find>g_mm</find>
-      <find>computeInv</find>
-      <find>computeMakersGeometry</find>
       <find>convertQuaternionsToRvec</find>
       <find>leftCameraTopic</find>
+      <find>solvePnP</find>
+      <find>computeInv</find>
+      <find>computeMakersGeometry</find>
+      <find>g_mm</find>
+      <find>collect_data_num</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -169,8 +171,8 @@
       <list>
         <option value="$PROJECT_DIR$/package.xml" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/include/davinci_calibrator/davinci_calibrator.h" />
         <option value="$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp" />
+        <option value="$PROJECT_DIR$/include/davinci_calibrator/davinci_calibrator.h" />
         <option value="$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp" />
       </list>
     </option>
@@ -182,10 +184,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
+    <option name="x" value="1345" />
     <option name="y" value="24" />
-    <option name="width" value="1215" />
-    <option name="height" value="1000" />
+    <option name="width" value="1855" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -780,17 +782,24 @@
       <workItem from="1486493227105" duration="10636000" />
       <workItem from="1486516738509" duration="669000" />
       <workItem from="1486564481725" duration="9696000" />
+      <workItem from="1486674227419" duration="22000" />
+      <workItem from="1487176012008" duration="1448000" />
+      <workItem from="1487435303179" duration="11984000" />
+      <workItem from="1487688845590" duration="7597000" />
+      <workItem from="1487775224790" duration="405000" />
+      <workItem from="1487778723850" duration="234000" />
+      <workItem from="1487862275320" duration="6995000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57405000" />
+    <option name="totallyTimeSpent" value="86090000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1215" height="1000" extended-state="6" />
-    <editor active="false" />
+    <frame x="1345" y="24" width="1855" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10288066" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06738544" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -825,7 +834,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -1251,29 +1262,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/include/davinci_calibrator/davinci_calibrator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1422">
-          <caret line="79" column="4" lean-forward="false" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
+        <state relative-caret-position="612">
+          <caret line="73" column="24" lean-forward="false" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="24" />
           <folding>
             <element signature="e#59#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="81" column="99" lean-forward="false" selection-start-line="81" selection-start-column="99" selection-end-line="81" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="444" column="28" lean-forward="false" selection-start-line="444" selection-start-column="28" selection-end-line="444" selection-end-column="28" />
+        <state relative-caret-position="288">
+          <caret line="421" column="87" lean-forward="false" selection-start-line="421" selection-start-column="87" selection-end-line="421" selection-end-column="87" />
           <folding>
             <element signature="e#1769#1789#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="757">
+          <caret line="84" column="73" lean-forward="true" selection-start-line="84" selection-start-column="73" selection-end-line="84" selection-end-column="73" />
+          <folding />
         </state>
       </provider>
     </entry>

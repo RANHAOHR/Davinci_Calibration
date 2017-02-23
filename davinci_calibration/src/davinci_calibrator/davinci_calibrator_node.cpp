@@ -13,6 +13,7 @@
 #include <davinci_calibrator/davinci_calibrator.h>
 
 using namespace cv_projective;
+using namespace std;
 
 int main(int argc, char **argv) {
 
@@ -21,16 +22,7 @@ int main(int argc, char **argv) {
 
    	DavinciCalibrator calibrator(&nh);
 
-    const std::string leftCameraTopic("/davinci_endo/left/camera_info");
-    const std::string rightCameraTopic("/davinci_endo/right/camera_info");
-    
-    cameraProjectionMatrices cameraInfoObj(nh, leftCameraTopic, rightCameraTopic);   //camera info object
-
     ros::Duration(1).sleep();
-
-    cv::Mat P_l, P_r;
-    P_l.setTo(0);
-    P_r.setTo(0);
 
     cv::Mat left_cam_pose, right_cam_pose;
     left_cam_pose = cv::Mat::eye(4, 4, CV_64F);
@@ -39,103 +31,84 @@ int main(int argc, char **argv) {
     cv::Mat G_CM_l = cv::Mat::eye(4,4,CV_64F); ///g of maker relative to left camera
     cv::Mat G_CM_r = cv::Mat::eye(4,4,CV_64F); ///g of maker relative to right camera
 
-    bool freshCameraInfo = false;
-
-    cv::Mat camera_matrix_l = (cv::Mat_<float>(3,3) << 764.0635671930186, 0, 344.710190632238,
-            0, 760.4650393204188, 284.5192831458843,
-            0, 0, 1);
-
-    cv::Mat camera_matrix_r = (cv::Mat_<float>(3,3) << 755.7644364668356, 0, 287.1735406571376,
-            0, 756.1752058068007, 254.5592709895131,
-            0, 0, 1);
+    calibrator.collect_data_num = 1;
 
     while(nh.ok()){
 
         ros::spinOnce();
 
         // make sure camera information is ready.
-        if(!freshCameraInfo)
+        if(calibrator.freshCameraInfo)
         {
             //retrive camera info
-            P_l = cameraInfoObj.getLeftProjectionMatrix();
-            P_r = cameraInfoObj.getRightProjectionMatrix();
-            
+//            ROS_INFO_STREAM("camera_intrinsic_r" << calibrator.camera_intrinsic_r);
+//            ROS_INFO_STREAM("camera_intrinsic_l" << calibrator.camera_intrinsic_l);
 
-//             ROS_INFO_STREAM("projection mat left: " << P_l);
-//             ROS_INFO_STREAM("projection mat right: " << P_r);
+            if(calibrator.freshMakers){  //get fresh maker poses
+                /*
+                 * for computing base transformation
+                 */
+                //computeBaseTransformation();
 
-            if(P_l.at<double>(0,0) != 0 && P_r.at<double>(0,0))
-            {
-                // ROS_INFO("obtained camera info");
-                freshCameraInfo = true;
-
-                cv::Mat intrinsic_l = P_l.colRange(0,3).rowRange(0,3);    ///peel off the intirnsic matrix from projection matrix 
-                cv::Mat intrinsic_r = P_r.colRange(0,3).rowRange(0,3);
-
-                calibrator.freshRightCorner = true;
                 if (calibrator.freshLeftCorner && calibrator.freshRightCorner )
                 {
                     calibrator.setBoardCoord();  ///set the 3d coordinates for the chessboard or circle board
                     
                     if (calibrator.boardMatch) //when get the board corners match the 3d board set up
                     {
-                        calibrator.computeCameraPose(calibrator.left_corner_coordinates, camera_matrix_l, left_cam_pose);  ///get camera poses
-                        //calibrator.computeCameraPose(calibrator.right_corner_coordinates, intrinsic_r, right_cam_pose);
+                        cin >> calibrator.collect_data_num;
+                        if(calibrator.collect_data_num <= 20){
+                            calibrator.computeCameraPose(calibrator.left_corner_coordinates, calibrator.total_corners_left, calibrator.camera_intrinsic_l, left_cam_pose);  ///get camera poses
+                            calibrator.computeCameraPose(calibrator.right_corner_coordinates, calibrator.total_corners_right, calibrator.camera_intrinsic_r, right_cam_pose);
+                            ROS_INFO_STREAM("calibrator.total_corners_left size " << calibrator.total_corners_left.size());
+                            ROS_INFO_STREAM("calibrator.total_corners_left " << calibrator.total_corners_left);
+                        }
+
+                        if(calibrator.collect_data_num == 20){
                             ROS_INFO_STREAM("Left camera pose: " << left_cam_pose );
+                            ROS_INFO_STREAM("Right camera pose: " << right_cam_pose );
 
-                        //ROS_INFO_STREAM("RIGHT Camera Pose: " << right_cam_pose );
-
-                        if(calibrator.freshMakers){  //get fresh maker poses
+                            //void cv_projective::reprojectPoints(board_coordinates, temp_Points, P_l, const cv::Mat &P_r, const cv::Mat & = cv::Mat(),  const cv::Mat & = cv::Mat() );
                             //when get everything ready, compute G_CM
 
                             cv::Mat g_cm = left_cam_pose * calibrator.g_bm;
+                            ROS_INFO_STREAM("g_bm:" << calibrator.g_bm);
 
-//                            ROS_INFO_STREAM("LEFT g_cm: " << g_cm );
-//                            cv::Mat g_cm_inv = g_cm.inv();
-//                            ROS_INFO_STREAM("LEFT g_cm_inv: " << g_cm_inv );
+//                          ROS_INFO_STREAM("LEFT g_cm: " << g_cm );
+//                          cv::Mat g_cm_inv = g_cm.inv();
+//                          ROS_INFO_STREAM("LEFT g_cm_inv: " << g_cm_inv );
 
-//                            cv::Mat rot_1 = (cv::Mat_<double>(3,3) << 1,0,0,0,1,0,0,0,1);
-//                            cv::Mat rot_3 = (cv::Mat_<double>(3,3) << 0,0,-1,0,1,0,1,0,0);
-//
-//                            rot_1.copyTo(left_cam_pose.colRange(0,3).rowRange(0,3));
-//                            rot_3.copyTo(calibrator.g_mm.colRange(0,3).rowRange(0,3));
+                            G_CM_l = left_cam_pose * calibrator.g_bm * calibrator.g_M1_M0;
+                            G_CM_r = right_cam_pose * calibrator.g_bm * calibrator.g_M1_M0;
 
-
-
-                            G_CM_l = left_cam_pose * calibrator.g_bm * calibrator.g_mm;
-
-                            //G_CM_r = right_cam_pose * calibrator.g_bm * calibrator.g_mm;
-                             ROS_INFO_STREAM("LEFT G_CM_l: " << G_CM_l );
-//                             ROS_INFO_STREAM("RIGHT G_CM_r: " << G_CM_r );
+                            ROS_INFO_STREAM("LEFT G_CM_l: " << G_CM_l );
+                            ROS_INFO_STREAM("RIGHT G_CM_r: " << G_CM_r );
 
 //                            // ROS_INFO_STREAM("difference mat for l and r: " << diffmat);
                             /***testing using left camera now*/
-                            calibrator.testCamToBoard(G_CM_l, calibrator.marker_poses, calibrator.g_bm, left_cam_pose);
-
+                            calibrator.testCamToBoard(calibrator.marker_poses, calibrator.g_bm, left_cam_pose);
                             // calibrator.testCamToBoard2(calibrator.marker_poses, calibrator.g_bm);
-
-
-                        }else{
-                            ROS_INFO(" No marker detected! ");
                         }
 
                     }
+
+                }else{
+                ROS_INFO(" No corner information received! ");
                 }
-                else{
-                    ROS_INFO(" No corner information received! ");
-                }
-                
+
+            }else{
+            ROS_INFO(" No marker detected! ");
             }
         
         }
 
+        calibrator.freshCameraInfo = false;
         calibrator.freshLeftCorner = false;
-        //calibrator.freshRightCorner = false;
+        calibrator.freshRightCorner = false;
         calibrator.boardMatch = false;
         calibrator.freshMakers = false;
 
-        freshCameraInfo = false;
-        ros::Duration(1).sleep();
+        ros::Duration(1.2).sleep();
     }
 
     return 0; // should never get here, unless roscore dies
