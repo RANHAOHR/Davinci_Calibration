@@ -41,9 +41,6 @@ int main(int argc, char **argv) {
         if(calibrator.freshCameraInfo)
         {
             //retrive camera info
-//            ROS_INFO_STREAM("camera_intrinsic_r" << calibrator.camera_intrinsic_r);
-//            ROS_INFO_STREAM("camera_intrinsic_l" << calibrator.camera_intrinsic_l);
-
             if(calibrator.freshMakers){  //get fresh maker poses
                 /*
                  * for computing base transformation
@@ -57,14 +54,17 @@ int main(int argc, char **argv) {
                     if (calibrator.boardMatch) //when get the board corners match the 3d board set up
                     {
                         cin >> calibrator.collect_data_num;
-                        if(calibrator.collect_data_num <= 20){
+                        if(calibrator.collect_data_num <= calibrator.desired_test_num){
+
                             calibrator.computeCameraPose(calibrator.left_corner_coordinates, calibrator.total_corners_left, calibrator.camera_intrinsic_l, left_cam_pose);  ///get camera poses
                             calibrator.computeCameraPose(calibrator.right_corner_coordinates, calibrator.total_corners_right, calibrator.camera_intrinsic_r, right_cam_pose);
                             ROS_INFO_STREAM("calibrator.total_corners_left size " << calibrator.total_corners_left.size());
-                            ROS_INFO_STREAM("calibrator.total_corners_left " << calibrator.total_corners_left);
+                            //ROS_INFO_STREAM("calibrator.total_corners_left " << calibrator.total_corners_left);
+
                         }
 
-                        if(calibrator.collect_data_num == 20){
+                        if(calibrator.collect_data_num == calibrator.desired_test_num){
+
                             ROS_INFO_STREAM("Left camera pose: " << left_cam_pose );
                             ROS_INFO_STREAM("Right camera pose: " << right_cam_pose );
 
@@ -74,17 +74,12 @@ int main(int argc, char **argv) {
                             cv::Mat g_cm = left_cam_pose * calibrator.g_bm;
                             ROS_INFO_STREAM("g_bm:" << calibrator.g_bm);
 
-//                          ROS_INFO_STREAM("LEFT g_cm: " << g_cm );
-//                          cv::Mat g_cm_inv = g_cm.inv();
-//                          ROS_INFO_STREAM("LEFT g_cm_inv: " << g_cm_inv );
-
                             G_CM_l = left_cam_pose * calibrator.g_bm * calibrator.g_M1_M0;
                             G_CM_r = right_cam_pose * calibrator.g_bm * calibrator.g_M1_M0;
 
                             ROS_INFO_STREAM("LEFT G_CM_l: " << G_CM_l );
                             ROS_INFO_STREAM("RIGHT G_CM_r: " << G_CM_r );
 
-//                            // ROS_INFO_STREAM("difference mat for l and r: " << diffmat);
                             /***testing using left camera now*/
                             calibrator.testCamToBoard(calibrator.marker_poses, calibrator.g_bm, left_cam_pose);
                             // calibrator.testCamToBoard2(calibrator.marker_poses, calibrator.g_bm);
