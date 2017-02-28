@@ -53,17 +53,17 @@ int main(int argc, char **argv) {
                     
                     if (calibrator.boardMatch) //when get the board corners match the 3d board set up
                     {
-                        cin >> calibrator.collect_data_num;
-                        if(calibrator.collect_data_num <= calibrator.desired_test_num){
+                        // cin >> calibrator.collect_data_num;
+                        // if(calibrator.collect_data_num <= calibrator.desired_test_num){
 
                             calibrator.computeCameraPose(calibrator.left_corner_coordinates, calibrator.total_corners_left, calibrator.camera_intrinsic_l, left_cam_pose);  ///get camera poses
                             calibrator.computeCameraPose(calibrator.right_corner_coordinates, calibrator.total_corners_right, calibrator.camera_intrinsic_r, right_cam_pose);
                             ROS_INFO_STREAM("calibrator.total_corners_left size " << calibrator.total_corners_left.size());
                             //ROS_INFO_STREAM("calibrator.total_corners_left " << calibrator.total_corners_left);
 
-                        }
+                        // }
 
-                        if(calibrator.collect_data_num == calibrator.desired_test_num){
+                        // if(calibrator.collect_data_num == calibrator.desired_test_num){
 
                             ROS_INFO_STREAM("Left camera pose: " << left_cam_pose );
                             ROS_INFO_STREAM("Right camera pose: " << right_cam_pose );
@@ -83,7 +83,7 @@ int main(int argc, char **argv) {
                             /***testing using left camera now*/
                             calibrator.testCamToBoard(calibrator.marker_poses, calibrator.g_bm, left_cam_pose);
                             // calibrator.testCamToBoard2(calibrator.marker_poses, calibrator.g_bm);
-                        }
+                        // }
 
                     }
 

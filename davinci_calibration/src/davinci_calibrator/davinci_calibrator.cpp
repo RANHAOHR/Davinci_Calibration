@@ -268,7 +268,7 @@ void DavinciCalibrator::polarisTargetsCB(const geometry_msgs::PoseArray::ConstPt
         else{
 
         	computeMakersGeometry( marker_poses, g_M1_M0);
-            // ROS_INFO_STREAM("The transformation between two markers: " << g_M1_M0);
+            ROS_INFO_STREAM("The transformation between two markers: " << g_M1_M0);
 			freshMakers = true;
         }
 
@@ -330,12 +330,14 @@ void DavinciCalibrator::computeCameraPose(const std::vector<cv::Point2f> &corner
     distCoeffs.at<double>(3) = 0;
 
     ROS_INFO_STREAM("total_board_coordinates: " << total_board_coordinates.size());
-//    ROS_INFO_STREAM("corner_coords: " << corner_coords);
-
     ROS_INFO_STREAM("COUNT:" << collect_data_num );
+
+
     for (int i = 0; i < corner_coords.size(); ++i) {
         total_corner_coords.push_back(corner_coords[i]);
     }
+    // ROS_INFO_STREAM("total_corner_coords: " << total_corner_coords);
+
 
      if(collect_data_num == desired_test_num){
         cv::solvePnP(total_board_coordinates, total_corner_coords, cameraMatrix, distCoeffs, cam_rvec, cam_tvec);
