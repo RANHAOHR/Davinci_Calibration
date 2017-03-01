@@ -2,73 +2,73 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" buildAllGenerated="true">
     <generated>
-      <config projectName="camera_calibration" targetName="gtest" />
-      <config projectName="camera_calibration" targetName="run_tests_camera_calibration_nosetests_test.directed.py" />
-      <config projectName="camera_calibration" targetName="_run_tests_camera_calibration_nosetests_test.directed.py" />
-      <config projectName="camera_calibration" targetName="run_tests" />
-      <config projectName="camera_calibration" targetName="camera_calibration_genlisp" />
-      <config projectName="davinci_calibration" targetName="davinci_calibration_gencpp" />
-      <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_py" />
-      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_py" />
-      <config projectName="davinci_calibration" targetName="davinci_calibration_generate_messages" />
-      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_cpp" />
-      <config projectName="camera_calibration" targetName="roscpp_generate_messages_cpp" />
-      <config projectName="camera_calibration" targetName="roscpp_generate_messages_eus" />
-      <config projectName="camera_calibration" targetName="_run_tests_camera_calibration_nosetests_test.multiple_boards.py" />
-      <config projectName="camera_calibration" targetName="_run_tests_camera_calibration_nosetests" />
-      <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_eus" />
-      <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_eus" />
-      <config projectName="camera_calibration" targetName="multi_board_calibration.tar.gz" />
-      <config projectName="davinci_calibration" targetName="_davinci_calibration_generate_messages_check_deps_corners" />
-      <config projectName="camera_calibration" targetName="camera_calibration_gencpp" />
-      <config projectName="davinci_calibration" targetName="davinci_calibration_generate_messages_cpp" />
-      <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_cpp" />
-      <config projectName="camera_calibration" targetName="_camera_calibration_generate_messages_check_deps_points" />
-      <config projectName="camera_calibration" targetName="run_tests_camera_calibration_nosetests" />
-      <config projectName="camera_calibration" targetName="doxygen" />
-      <config projectName="camera_calibration" targetName="_camera_calibration_generate_messages_check_deps_corners" />
-      <config projectName="davinci_calibration" targetName="davinci_calibration_generate_messages_py" />
-      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_eus" />
-      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_cpp" />
-      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_eus" />
       <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_py" />
-      <config projectName="davinci_calibration" targetName="_davinci_calibration_generate_messages_check_deps_points" />
-      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_lisp" />
+      <config projectName="davinci_calibration" targetName="davinci_calibration_generate_messages" />
+      <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_cpp" />
       <config projectName="camera_calibration" targetName="camera_calibration_geneus" />
-      <config projectName="davinci_calibration" targetName="davinci_calibration_generate_messages_eus" />
       <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_eus" />
-      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_cpp" />
-      <config projectName="camera_calibration" targetName="_run_tests_camera_calibration" />
+      <config projectName="camera_calibration" targetName="download_extra_data" />
+      <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_lisp" />
       <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_lisp" />
+      <config projectName="camera_calibration" targetName="_run_tests_camera_calibration_nosetests_test.directed.py" />
+      <config projectName="camera_calibration" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="camera_calibration" targetName="_run_tests_camera_calibration_nosetests_test.multiple_boards.py" />
+      <config projectName="davinci_calibration" targetName="_davinci_calibration_generate_messages_check_deps_points" />
+      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_eus" />
+      <config projectName="camera_calibration" targetName="run_tests_camera_calibration_nosetests" />
+      <config projectName="davinci_calibration" targetName="davinci_calibration_generate_messages_py" />
+      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_py" />
+      <config projectName="camera_calibration" targetName="_camera_calibration_generate_messages_check_deps_points" />
+      <config projectName="camera_calibration" targetName="camera_calibration_genlisp" />
+      <config projectName="camera_calibration" targetName="davinci_calibrator_node" />
+      <config projectName="camera_calibration" targetName="_run_tests_camera_calibration" />
+      <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_eus" />
+      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="davinci_calibration" targetName="davinci_calibration_genlisp" />
+      <config projectName="camera_calibration" targetName="camera_calibration_gencpp" />
+      <config projectName="camera_calibration" targetName="_camera_calibration_generate_messages_check_deps_corners" />
+      <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_cpp" />
+      <config projectName="camera_calibration" targetName="clean_test_results" />
+      <config projectName="camera_calibration" targetName="multi_board_calibration.tar.gz" />
+      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_cpp" />
+      <config projectName="camera_calibration" targetName="gtest" />
+      <config projectName="davinci_calibration" targetName="davinci_calibration_genpy" />
+      <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_py" />
+      <config projectName="camera_calibration" targetName="camera_calibration.tar.gz" />
+      <config projectName="camera_calibration" targetName="gtest_main" />
+      <config projectName="camera_calibration" targetName="run_tests_camera_calibration" />
+      <config projectName="camera_calibration" targetName="camera_calibration_genpy" />
+      <config projectName="camera_calibration" targetName="run_tests" />
+      <config projectName="camera_calibration" targetName="run_tests_camera_calibration_nosetests_test.multiple_boards.py" />
+      <config projectName="camera_calibration" targetName="clean_test_results_camera_calibration" />
+      <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_eus" />
+      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_lisp" />
+      <config projectName="camera_calibration" targetName="roscpp_generate_messages_py" />
+      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_eus" />
+      <config projectName="davinci_calibration" targetName="davinci_calibration_generate_messages_cpp" />
+      <config projectName="davinci_calibration" targetName="_davinci_calibration_generate_messages_check_deps_intrinsic_param" />
+      <config projectName="camera_calibration" targetName="_run_tests_camera_calibration_nosetests" />
+      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_py" />
+      <config projectName="davinci_calibration" targetName="davinci_calibration_generate_messages_lisp" />
+      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_eus" />
       <config projectName="camera_calibration" targetName="_camera_calibration_generate_messages_check_deps_intrinsic_param" />
+      <config projectName="camera_calibration" targetName="roscpp_generate_messages_lisp" />
+      <config projectName="davinci_calibration" targetName="davinci_calibration_gencpp" />
+      <config projectName="davinci_calibration" targetName="_davinci_calibration_generate_messages_check_deps_corners" />
+      <config projectName="camera_calibration" targetName="run_tests_camera_calibration_nosetests_test.directed.py" />
+      <config projectName="camera_calibration" targetName="doxygen" />
+      <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_cpp" />
+      <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_py" />
+      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_lisp" />
+      <config projectName="camera_calibration" targetName="tests" />
+      <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_lisp" />
+      <config projectName="camera_calibration" targetName="roscpp_generate_messages_eus" />
+      <config projectName="davinci_calibration" targetName="davinci_calibration_generate_messages_eus" />
+      <config projectName="camera_calibration" targetName="davinci_calibrator" />
+      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_cpp" />
+      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_cpp" />
       <config projectName="camera_calibration" targetName="camera_calibration_generate_messages" />
       <config projectName="camera_calibration" targetName="std_msgs_generate_messages_lisp" />
-      <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_lisp" />
-      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_py" />
-      <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_py" />
-      <config projectName="camera_calibration" targetName="download_extra_data" />
-      <config projectName="camera_calibration" targetName="gtest_main" />
-      <config projectName="camera_calibration" targetName="davinci_calibrator_node" />
-      <config projectName="camera_calibration" targetName="tests" />
-      <config projectName="camera_calibration" targetName="roscpp_generate_messages_lisp" />
-      <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_eus" />
-      <config projectName="camera_calibration" targetName="std_msgs_generate_messages_py" />
-      <config projectName="davinci_calibration" targetName="davinci_calibration_genpy" />
-      <config projectName="camera_calibration" targetName="camera_calibration_genpy" />
-      <config projectName="camera_calibration" targetName="run_tests_camera_calibration" />
-      <config projectName="camera_calibration" targetName="roscpp_generate_messages_py" />
-      <config projectName="davinci_calibration" targetName="_davinci_calibration_generate_messages_check_deps_intrinsic_param" />
-      <config projectName="davinci_calibration" targetName="davinci_calibration_generate_messages_lisp" />
-      <config projectName="camera_calibration" targetName="camera_calibration.tar.gz" />
-      <config projectName="camera_calibration" targetName="davinci_calibrator" />
-      <config projectName="davinci_calibration" targetName="davinci_calibration_genlisp" />
-      <config projectName="camera_calibration" targetName="clean_test_results" />
-      <config projectName="camera_calibration" targetName="sensor_msgs_generate_messages_lisp" />
-      <config projectName="camera_calibration" targetName="rosgraph_msgs_generate_messages_lisp" />
-      <config projectName="camera_calibration" targetName="clean_test_results_camera_calibration" />
-      <config projectName="camera_calibration" targetName="geometry_msgs_generate_messages_cpp" />
-      <config projectName="camera_calibration" targetName="run_tests_camera_calibration_nosetests_test.multiple_boards.py" />
-      <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_cpp" />
       <config projectName="davinci_calibration" targetName="davinci_calibration_geneus" />
     </generated>
   </component>
@@ -98,24 +98,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="davinci_calibrator_node.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="davinci_calibrator_node.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="882">
-              <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+            <state relative-caret-position="541">
+              <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="davinci_calibrator.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="davinci_calibrator.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="332" column="7" lean-forward="false" selection-start-line="332" selection-start-column="7" selection-end-line="332" selection-end-column="7" />
-              <folding>
-                <element signature="e#1769#1789#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1323">
+              <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -792,16 +790,16 @@
       <workItem from="1488131040378" duration="1820000" />
       <workItem from="1488135442236" duration="5423000" />
       <workItem from="1488215266642" duration="19000" />
-      <workItem from="1488393320899" duration="1000" />
+      <workItem from="1488393320899" duration="119000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93353000" />
+    <option name="totallyTimeSpent" value="93471000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1215" height="1000" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10205761" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -864,9 +862,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1769#1789#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -908,9 +904,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1769#1789#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -952,9 +946,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1769#1789#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -996,9 +988,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6336">
           <caret line="352" column="54" lean-forward="true" selection-start-line="352" selection-start-column="54" selection-end-line="352" selection-end-column="54" />
-          <folding>
-            <element signature="e#1769#1789#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1040,9 +1030,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1769#1789#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1084,9 +1072,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4104">
           <caret line="228" column="9" lean-forward="false" selection-start-line="228" selection-start-column="8" selection-end-line="228" selection-end-column="8" />
-          <folding>
-            <element signature="e#1769#1789#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1128,9 +1114,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="846">
           <caret line="47" column="29" lean-forward="true" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
-          <folding>
-            <element signature="e#1769#1789#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1164,9 +1148,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1769#1789#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1208,9 +1190,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1188">
           <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding>
-            <element signature="e#1769#1789#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1274,21 +1254,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
+    <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+        <state relative-caret-position="-1323">
+          <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
+    <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="332" column="7" lean-forward="false" selection-start-line="332" selection-start-column="7" selection-end-line="332" selection-end-column="7" />
-          <folding>
-            <element signature="e#1769#1789#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="541">
+          <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
