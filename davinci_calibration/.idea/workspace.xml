@@ -31,8 +31,8 @@
       <config projectName="camera_calibration" targetName="clean_test_results" />
       <config projectName="camera_calibration" targetName="multi_board_calibration.tar.gz" />
       <config projectName="camera_calibration" targetName="camera_calibration_generate_messages_cpp" />
-      <config projectName="camera_calibration" targetName="gtest" />
       <config projectName="davinci_calibration" targetName="davinci_calibration_genpy" />
+      <config projectName="camera_calibration" targetName="gtest" />
       <config projectName="camera_calibration" targetName="cwru_opencv_common_generate_messages_py" />
       <config projectName="camera_calibration" targetName="camera_calibration.tar.gz" />
       <config projectName="camera_calibration" targetName="gtest_main" />
@@ -98,22 +98,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="davinci_calibrator_node.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="davinci_calibrator_node.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="541">
-              <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="504">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding>
+                <element signature="e#636#656#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="davinci_calibrator.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="davinci_calibrator.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1323">
-              <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="263">
+              <caret line="371" column="2" lean-forward="false" selection-start-line="371" selection-start-column="2" selection-end-line="371" selection-end-column="2" />
+              <folding>
+                <element signature="e#1769#1789#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,10 +125,10 @@
       <file leaf-file-name="davinci_calibrator.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/include/davinci_calibrator/davinci_calibrator.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state relative-caret-position="18">
+              <caret line="155" column="4" lean-forward="false" selection-start-line="155" selection-start-column="4" selection-end-line="159" selection-end-column="7" />
               <folding>
-                <element signature="e#59#79#0" expanded="true" />
+                <marker date="1501786614066" expanded="true" signature="596:6718" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -143,8 +147,8 @@
       <file leaf-file-name="package.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="324">
+              <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -154,23 +158,49 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>inputMat</find>
-      <find>convertQuaternionsToRvec</find>
-      <find>leftCameraTopic</find>
-      <find>solvePnP</find>
       <find>computeInv</find>
-      <find>computeMakersGeometry</find>
       <find>g_mm</find>
+      <find>G_M1_M2</find>
+      <find>G_M1_M0</find>
+      <find>valid_num</find>
+      <find>32</find>
+      <find>G_BM1</find>
+      <find>best_value</find>
+      <find>local_G_CM0</find>
+      <find>stereoCameraCalibration</find>
+      <find>board_coordinates</find>
+      <find>computeCameraPose</find>
+      <find>freshMakers</find>
+      <find>computeMakersGeometry</find>
+      <find>g_M1_M0</find>
+      <find>computeSE3</find>
+      <find>particleSwarmOptimization</find>
+      <find>errorFunc</find>
+      <find>G_CB</find>
+      <find>cameraIntrinsicRightCB</find>
+      <find>cameraIntrinsicLeftCB</find>
+      <find>cameraMatRightCB</find>
+      <find>camera_intrinsic_r</find>
+      <find>camera_intrinsic_l</find>
+      <find>camera_mat_l</find>
       <find>collect_data_num</find>
+      <find>g_base_M0_data</find>
+      <find>g_bm</find>
+      <find>computeBaseTransformation</find>
+      <find>freshCameraInfo</find>
     </findStrings>
+    <replaceStrings>
+      <replace>camera</replace>
+      <replace>camera_mat_r</replace>
+    </replaceStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/package.xml" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/include/davinci_calibrator/davinci_calibrator.h" />
         <option value="$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp" />
+        <option value="$PROJECT_DIR$/include/davinci_calibrator/davinci_calibrator.h" />
         <option value="$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp" />
       </list>
     </option>
@@ -183,9 +213,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="24" />
-    <option name="width" value="1215" />
-    <option name="height" value="1000" />
+    <option name="y" value="-4" />
+    <option name="width" value="1855" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -782,40 +812,60 @@
       <workItem from="1486564481725" duration="9696000" />
       <workItem from="1486674227419" duration="22000" />
       <workItem from="1487176012008" duration="1448000" />
-      <workItem from="1487435303179" duration="11984000" />
-      <workItem from="1487688845590" duration="7597000" />
-      <workItem from="1487775224790" duration="405000" />
-      <workItem from="1487778723850" duration="234000" />
-      <workItem from="1487862275320" duration="6995000" />
-      <workItem from="1488131040378" duration="1820000" />
-      <workItem from="1488135442236" duration="5423000" />
-      <workItem from="1488215266642" duration="19000" />
-      <workItem from="1488393320899" duration="119000" />
+      <workItem from="1487435303179" duration="10754000" />
+      <workItem from="1488393638572" duration="5912000" />
+      <workItem from="1488503636525" duration="32000" />
+      <workItem from="1488566758993" duration="965000" />
+      <workItem from="1488649845841" duration="638000" />
+      <workItem from="1488732207220" duration="976000" />
+      <workItem from="1488815517658" duration="5100000" />
+      <workItem from="1488838214127" duration="35000" />
+      <workItem from="1488851804605" duration="12000" />
+      <workItem from="1488899629896" duration="681000" />
+      <workItem from="1488910668766" duration="852000" />
+      <workItem from="1489085040616" duration="20890000" />
+      <workItem from="1489163135077" duration="6835000" />
+      <workItem from="1489179123280" duration="1592000" />
+      <workItem from="1489418340687" duration="1152000" />
+      <workItem from="1489423573393" duration="4368000" />
+      <workItem from="1489430819806" duration="7881000" />
+      <workItem from="1489589033781" duration="10104000" />
+      <workItem from="1490020603594" duration="3521000" />
+      <workItem from="1490057883871" duration="1558000" />
+      <workItem from="1490298471553" duration="4452000" />
+      <workItem from="1491595514232" duration="393000" />
+      <workItem from="1493948272303" duration="2336000" />
+      <workItem from="1494095067109" duration="2071000" />
+      <workItem from="1494521486206" duration="2753000" />
+      <workItem from="1495495348436" duration="5745000" />
+      <workItem from="1501783277327" duration="2597000" />
+      <workItem from="1501786669924" duration="27000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93471000" />
+    <option name="totallyTimeSpent" value="163107000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1215" height="1000" extended-state="6" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10205761" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.043117743" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3279396" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -837,7 +887,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="1" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -854,7 +904,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1800">
           <caret line="100" column="64" lean-forward="true" selection-start-line="100" selection-start-column="64" selection-end-line="100" selection-end-column="64" />
-          <folding />
+          <folding>
+            <element signature="e#636#656#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -862,7 +914,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1769#1789#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -871,7 +925,7 @@
         <state relative-caret-position="1422">
           <caret line="79" column="4" lean-forward="false" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
           <folding>
-            <element signature="e#59#79#0" expanded="true" />
+            <marker date="1501786614066" expanded="true" signature="596:6718" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -896,7 +950,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1818">
           <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#636#656#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -904,7 +960,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1769#1789#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -913,7 +971,7 @@
         <state relative-caret-position="1044">
           <caret line="58" column="26" lean-forward="false" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
           <folding>
-            <element signature="e#59#79#0" expanded="true" />
+            <marker date="1501786614066" expanded="true" signature="596:6718" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -938,7 +996,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1818">
           <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#636#656#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -946,7 +1006,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1769#1789#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -955,7 +1017,7 @@
         <state relative-caret-position="1044">
           <caret line="58" column="26" lean-forward="true" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
           <folding>
-            <element signature="e#59#79#0" expanded="true" />
+            <marker date="1501786614066" expanded="true" signature="596:6718" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -980,7 +1042,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#636#656#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -988,7 +1052,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6336">
           <caret line="352" column="54" lean-forward="true" selection-start-line="352" selection-start-column="54" selection-end-line="352" selection-end-column="54" />
-          <folding />
+          <folding>
+            <element signature="e#1769#1789#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -997,7 +1063,7 @@
         <state relative-caret-position="450">
           <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
           <folding>
-            <element signature="e#59#79#0" expanded="true" />
+            <marker date="1501786614066" expanded="true" signature="596:6718" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1022,7 +1088,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1710">
           <caret line="95" column="0" lean-forward="true" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#636#656#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1030,7 +1098,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1769#1789#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1039,7 +1109,7 @@
         <state relative-caret-position="990">
           <caret line="55" column="38" lean-forward="true" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
           <folding>
-            <element signature="e#59#79#0" expanded="true" />
+            <marker date="1501786614066" expanded="true" signature="596:6718" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1064,7 +1134,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#636#656#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1072,7 +1144,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4104">
           <caret line="228" column="9" lean-forward="false" selection-start-line="228" selection-start-column="8" selection-end-line="228" selection-end-column="8" />
-          <folding />
+          <folding>
+            <element signature="e#1769#1789#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1081,7 +1155,7 @@
         <state relative-caret-position="378">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="e#59#79#0" expanded="true" />
+            <marker date="1501786614066" expanded="true" signature="596:6718" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1106,7 +1180,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#636#656#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1114,7 +1190,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="846">
           <caret line="47" column="29" lean-forward="true" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
-          <folding />
+          <folding>
+            <element signature="e#1769#1789#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1123,7 +1201,7 @@
         <state relative-caret-position="1098">
           <caret line="61" column="36" lean-forward="true" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
           <folding>
-            <element signature="e#59#79#0" expanded="true" />
+            <marker date="1501786614066" expanded="true" signature="596:6718" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1148,7 +1226,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1769#1789#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1156,7 +1236,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
           <caret line="38" column="47" lean-forward="false" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
-          <folding />
+          <folding>
+            <element signature="e#636#656#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1165,7 +1247,7 @@
         <state relative-caret-position="1116">
           <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
           <folding>
-            <element signature="e#59#79#0" expanded="true" />
+            <marker date="1501786614066" expanded="true" signature="596:6718" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1190,7 +1272,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1188">
           <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1769#1789#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1198,7 +1282,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#636#656#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1207,7 +1293,7 @@
         <state relative-caret-position="306">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="e#59#79#0" expanded="true" />
+            <marker date="1501786614066" expanded="true" signature="596:6718" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1230,8 +1316,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="324">
+          <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1244,29 +1330,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="e#636#656#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/include/davinci_calibrator/davinci_calibrator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+        <state relative-caret-position="18">
+          <caret line="155" column="4" lean-forward="false" selection-start-line="155" selection-start-column="4" selection-end-line="159" selection-end-column="7" />
           <folding>
-            <element signature="e#59#79#0" expanded="true" />
+            <marker date="1501786614066" expanded="true" signature="596:6718" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1323">
-          <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/davinci_calibrator/davinci_calibrator_node.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="263">
+          <caret line="371" column="2" lean-forward="false" selection-start-line="371" selection-start-column="2" selection-end-line="371" selection-end-column="2" />
+          <folding>
+            <element signature="e#1769#1789#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,8 +1,0 @@
-set(_CATKIN_CURRENT_PACKAGE "davinci_calibration")
-set(davinci_calibration_VERSION "1.12.19")
-set(davinci_calibration_MAINTAINER "Ran Hao <rxh349@case.edu>")
-set(davinci_calibration_BUILD_DEPENDS "geometry_msgs" "std_msgs" "message_generation" "cwru_opencv_common")
-set(davinci_calibration_RUN_DEPENDS "cv_bridge" "image_geometry" "message_filters" "rospy" "std_srvs" "sensor_msgs" "geometry_msgs" "std_msgs" "message_runtime" "cwru_opencv_common")
-set(davinci_calibration_DEPRECATED "")
-set(davinci_calibration_BUILDTOOL_DEPENDS "catkin")
-set(davinci_calibration_BUILDTOOL_DEPENDS_catkin_VERSION_GTE "0.5.68")
